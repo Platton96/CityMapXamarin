@@ -1,18 +1,17 @@
 ﻿using CityMapXomarin.Core.Infastrucure;
 using CityMapXomarin.Core.Models;
-using CityMapXomarin.Core.Services.Api;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
- namespace CityMapXomarin.Core.Services
+namespace CityMapXomarin.Core.Services
 {
     public class CitiesService : ICitiesService
     {
-        ICitiesApiService _citiesApiService;
+        private readonly ICitiesApiService _citiesApiService;
 
-        public CitiesService()
+        public CitiesService(ICitiesApiService citiesApiService)
         {
-            _citiesApiService = new CitiesApiService();
+            _citiesApiService = citiesApiService;
         }
 
         public async Task<IEnumerable<CityModel>> GetCitiesAsync()
