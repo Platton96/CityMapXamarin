@@ -56,9 +56,10 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Setup.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup.cs" />
+    <Compile Include="MainApplication.cs" />
     <Compile Include="Views\MainPageView.cs" />
   </ItemGroup>
   <ItemGroup>

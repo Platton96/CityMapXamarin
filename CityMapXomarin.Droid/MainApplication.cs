@@ -9,21 +9,16 @@ using System;
 
 namespace CityMapXamarin.Droid
 {
-    public class Setup : MvxAndroidSetup<App>
+    [Application]
+    public class MainApplication : MvxAndroidApplication<Setup, App>
     {
-        public Setup()
+        public MainApplication()
         {
 
         }
 
-        public Setup(Context context) : base()
+        public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
-
-        }
-
-        protected override IMvxApplication CreateApp()
-        {
-            return new App();
         }
     }
 }

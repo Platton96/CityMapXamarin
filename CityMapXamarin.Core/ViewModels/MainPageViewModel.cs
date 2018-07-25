@@ -29,7 +29,7 @@ namespace CityMapXamarin.Core.ViewModels
 
         private void ResetText()
         {
-            Text = "Hello xomarin";
+            Text = "Hello xamarin";
         }
 
         private string _text = "Hello MvvmCross";

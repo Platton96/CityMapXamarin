@@ -7,7 +7,7 @@ using CityMapXamarin.Core.ViewModels;
 namespace CrossJournal.UI.Droid.Views
 {
     [Activity(Label = "Main page", MainLauncher=true)]
-    public class MainPageView : MvxActivity
+    public class MainPageView : MvxActivity<MainPageViewModel>
     {
         protected override void OnCreate(Bundle bundle)
         {
