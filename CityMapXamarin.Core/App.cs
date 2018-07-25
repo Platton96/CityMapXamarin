@@ -1,6 +1,6 @@
-﻿using CityMapXomarin.Core.Infastrucure;
-using CityMapXomarin.Core.Services;
-using CityMapXomarin.Core.Services.Api;
+﻿using CityMapXamarin.Core.Infastrucure;
+using CityMapXamarin.Core.Services;
+using CityMapXamarin.Core.Services.Api;
 using MvvmCross;
 using MvvmCross.ViewModels;
 

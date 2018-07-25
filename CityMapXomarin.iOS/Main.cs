@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace CityMapXomarin.iOS
+namespace CityMapXamarin.iOS
 {
 	public class Application
 	{

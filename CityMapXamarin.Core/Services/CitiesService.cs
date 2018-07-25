@@ -1,9 +1,9 @@
-﻿using CityMapXomarin.Core.Infastrucure;
-using CityMapXomarin.Core.Models;
+﻿using CityMapXamarin.Core.Infastrucure;
+using CityMapXamarin.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CityMapXomarin.Core.Services
+namespace CityMapXamarin.Core.Services
 {
     public class CitiesService : ICitiesService
     {

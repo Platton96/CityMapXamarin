@@ -1,12 +1,12 @@
-﻿using CityMapXomarin.Core.Infastrucure;
-using CityMapXomarin.Core.Models;
+﻿using CityMapXamarin.Core.Infastrucure;
+using CityMapXamarin.Core.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CityMapXomarin.Core.Services.Api
+namespace CityMapXamarin.Core.Services.Api
 {
     public class CitiesApiService : ICitiesApiService
     {

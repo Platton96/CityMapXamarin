@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityMapXamarin.Core", "CityMapXamarin.Core\CityMapXamarin.Core.csproj", "{4880A5D1-E4CB-4AE5-8B87-4F26B26FC7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityMapXomarin.Droid", "CityMapXomarin.Droid\CityMapXomarin.Droid.csproj", "{4A217C85-DC85-44A9-8670-FC4DB942E644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityMapXamarin.Droid", "CityMapXomarin.Droid\CityMapXamarin.Droid.csproj", "{4A217C85-DC85-44A9-8670-FC4DB942E644}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityMapXomarin.iOS", "CityMapXomarin.iOS\CityMapXomarin.iOS.csproj", "{80A96B52-6758-4BDB-B0B4-CEA4CA155C60}"
 EndProject
