@@ -9,15 +9,6 @@ namespace CityMapXamarin.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        public MainPageViewModel()
-        {
-        }
-
-        private void Prepare()
-        {
-            // This is the first method to be called after construction
-        }
-
         public override Task Initialize()
         {
             // Async initialization, YEY!
