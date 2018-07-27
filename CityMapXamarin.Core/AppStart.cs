@@ -1,8 +1,9 @@
 ﻿using CityMapXamarin.Core.Infastrucure;
 using CityMapXamarin.Core.Services;
+using CityMapXamarin.Core.Services.Api;
 using CityMapXamarin.Core.ViewModels;
-using MvvmCross;
-using MvvmCross.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace CityMapXamarin.Core
 {
@@ -11,6 +12,7 @@ namespace CityMapXamarin.Core
         public override void Initialize()
         {
             Mvx.LazyConstructAndRegisterSingleton<ICitiesService, CitiesService>();
+            Mvx.LazyConstructAndRegisterSingleton<ICitiesApiService, CitiesApiService>();
             RegisterAppStart<MainPageViewModel>();
         } 
     }

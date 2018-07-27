@@ -1,43 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+using CityMapXamarin.Core.Infastrucure;
+using CityMapXamarin.Core.Models;
+using MvvmCross.Core.ViewModels;
 
 namespace CityMapXamarin.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        public override async Task Initialize()
-        {
-            await base.Initialize();
-        }
+        private int _number;
 
+        private ObservableCollection<CityModel> _cities;
+
+        private readonly ICitiesService _citiesService;
         public ICommand IncrementCommand => new MvxCommand(DoIncrement);
+        public ICommand IncremhghjgentCommand => new MvxCommand<CityModel>(DoIncbnbvrement);
 
-        private void DoIncrement()
+        private void DoIncbnbvrement(CityModel obj)
         {
-            Number++;
+            
         }
 
         public ICommand DecrementCommand => new MvxCommand(DoDecrement);
 
-        private void DoDecrement()
-        {
-            Number--;
-        }
-
-        private int _number;
         public int Number
         {
-            get =>_number; 
+            get => _number;
             set
             {
                 _number = value;
                 RaisePropertyChanged(() => Number);
             }
+        }
+
+        public ObservableCollection<CityModel> Cities
+        {
+            get => _cities;
+            set
+            {
+                _cities = value;
+                RaisePropertyChanged(() => Cities);
+            }
+        }
+
+        public MainPageViewModel(ICitiesService citiesService)
+        {
+            _citiesService = citiesService;
+        }
+        public override async void ViewCreated()
+        {
+            base.ViewCreated();
+            Cities = new ObservableCollection<CityModel>(await _citiesService.GetCitiesAsync());
+
+        }
+        private void DoIncrement()
+        {
+            Number++;
+        }
+
+        private void DoDecrement()
+        {
+            Number--;
         }
     }
 }

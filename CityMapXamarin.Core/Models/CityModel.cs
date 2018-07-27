@@ -12,7 +12,7 @@ namespace CityMapXamarin.Core.Models
         [DataMember(Name = "description")]
         public string Description { get; set; }
         [DataMember(Name = "url")]
-        public string ImageUrl { get; set; }
+        public string ImageUrl1 { get; set; }
         [DataMember(Name = "latitude")]
         public double Latitude { get; set; }
         [DataMember(Name = "longitude")]
