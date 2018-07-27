@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
@@ -9,25 +10,34 @@ namespace CityMapXamarin.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        public override Task Initialize()
+        public override async Task Initialize()
         {
-            // Async initialization, YEY!
-
-            return base.Initialize();
+            await base.Initialize();
         }
 
-        public IMvxCommand ResetTextCommand => new MvxCommand(ResetText);
+        public ICommand IncrementCommand => new MvxCommand(DoIncrement);
 
-        private void ResetText()
+        private void DoIncrement()
         {
-            Text = "Hello xamarin";
+            Number++;
         }
 
-        private string _text = "Hello MvvmCross";
-        public string Text
+        public ICommand DecrementCommand => new MvxCommand(DoDecrement);
+
+        private void DoDecrement()
         {
-            get { return _text; }
-            set { SetProperty(ref _text, value); }
+            Number--;
+        }
+
+        private int _number;
+        public int Number
+        {
+            get =>_number; 
+            set
+            {
+                _number = value;
+                RaisePropertyChanged(() => Number);
+            }
         }
     }
 }
