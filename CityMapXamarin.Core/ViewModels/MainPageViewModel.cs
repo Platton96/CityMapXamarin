@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CityMapXamarin.Core.Infastrucure;
 using CityMapXamarin.Core.Models;
@@ -22,7 +18,7 @@ namespace CityMapXamarin.Core.ViewModels
 
         private void DoIncbnbvrement(CityModel obj)
         {
-            
+            ShowViewModel<CityViewModel>(obj);
         }
 
         public ICommand DecrementCommand => new MvxCommand(DoDecrement);
