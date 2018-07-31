@@ -2390,8 +2390,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070039
 			public const int SYM = 2131165241;
 			
-			// aapt resource value: 0x7f0700a1
-			public const int action0 = 2131165345;
+			// aapt resource value: 0x7f07009e
+			public const int action0 = 2131165342;
 			
 			// aapt resource value: 0x7f07007e
 			public const int action_bar = 2131165310;
@@ -2414,17 +2414,17 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f07005c
 			public const int action_bar_title = 2131165276;
 			
-			// aapt resource value: 0x7f07009e
-			public const int action_container = 2131165342;
+			// aapt resource value: 0x7f07009b
+			public const int action_container = 2131165339;
 			
 			// aapt resource value: 0x7f07007f
 			public const int action_context_bar = 2131165311;
 			
-			// aapt resource value: 0x7f0700a5
-			public const int action_divider = 2131165349;
+			// aapt resource value: 0x7f0700a2
+			public const int action_divider = 2131165346;
 			
-			// aapt resource value: 0x7f07009f
-			public const int action_image = 2131165343;
+			// aapt resource value: 0x7f07009c
+			public const int action_image = 2131165340;
 			
 			// aapt resource value: 0x7f070003
 			public const int action_menu_divider = 2131165187;
@@ -2441,11 +2441,11 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f07005e
 			public const int action_mode_close_button = 2131165278;
 			
-			// aapt resource value: 0x7f0700a0
-			public const int action_text = 2131165344;
+			// aapt resource value: 0x7f07009d
+			public const int action_text = 2131165341;
 			
-			// aapt resource value: 0x7f0700ae
-			public const int actions = 2131165358;
+			// aapt resource value: 0x7f0700ab
+			public const int actions = 2131165355;
 			
 			// aapt resource value: 0x7f07005f
 			public const int activity_chooser_view_content = 2131165279;
@@ -2477,17 +2477,11 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f07003f
 			public const int bottom = 2131165247;
 			
-			// aapt resource value: 0x7f07009d
-			public const int btnDecrement = 2131165341;
-			
-			// aapt resource value: 0x7f07009c
-			public const int btnIncrement = 2131165340;
-			
 			// aapt resource value: 0x7f070065
 			public const int buttonPanel = 2131165285;
 			
-			// aapt resource value: 0x7f0700a2
-			public const int cancel_action = 2131165346;
+			// aapt resource value: 0x7f07009f
+			public const int cancel_action = 2131165343;
 			
 			// aapt resource value: 0x7f070047
 			public const int center = 2131165255;
@@ -2501,8 +2495,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070075
 			public const int checkbox = 2131165301;
 			
-			// aapt resource value: 0x7f0700aa
-			public const int chronometer = 2131165354;
+			// aapt resource value: 0x7f0700a7
+			public const int chronometer = 2131165351;
 			
 			// aapt resource value: 0x7f070050
 			public const int clip_horizontal = 2131165264;
@@ -2558,8 +2552,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070032
 			public const int end = 2131165234;
 			
-			// aapt resource value: 0x7f0700b0
-			public const int end_padder = 2131165360;
+			// aapt resource value: 0x7f0700ad
+			public const int end_padder = 2131165357;
 			
 			// aapt resource value: 0x7f070041
 			public const int enterAlways = 2131165249;
@@ -2603,8 +2597,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070064
 			public const int icon = 2131165284;
 			
-			// aapt resource value: 0x7f0700af
-			public const int icon_group = 2131165359;
+			// aapt resource value: 0x7f0700ac
+			public const int icon_group = 2131165356;
 			
 			// aapt resource value: 0x7f07003c
 			public const int ifRoom = 2131165244;
@@ -2612,8 +2606,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070061
 			public const int image = 2131165281;
 			
-			// aapt resource value: 0x7f0700ab
-			public const int info = 2131165355;
+			// aapt resource value: 0x7f0700a8
+			public const int info = 2131165352;
 			
 			// aapt resource value: 0x7f07005b
 			public const int italic = 2131165275;
@@ -2639,14 +2633,14 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070063
 			public const int list_item = 2131165283;
 			
-			// aapt resource value: 0x7f0700b3
-			public const int masked = 2131165363;
+			// aapt resource value: 0x7f0700b0
+			public const int masked = 2131165360;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int media_actions = 2131165348;
+			// aapt resource value: 0x7f0700a1
+			public const int media_actions = 2131165345;
 			
-			// aapt resource value: 0x7f0700b1
-			public const int message = 2131165361;
+			// aapt resource value: 0x7f0700ae
+			public const int message = 2131165358;
 			
 			// aapt resource value: 0x7f070033
 			public const int middle = 2131165235;
@@ -2669,14 +2663,14 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070020
 			public const int normal = 2131165216;
 			
-			// aapt resource value: 0x7f0700ad
-			public const int notification_background = 2131165357;
+			// aapt resource value: 0x7f0700aa
+			public const int notification_background = 2131165354;
 			
-			// aapt resource value: 0x7f0700a7
-			public const int notification_main_column = 2131165351;
+			// aapt resource value: 0x7f0700a4
+			public const int notification_main_column = 2131165348;
 			
-			// aapt resource value: 0x7f0700a6
-			public const int notification_main_column_container = 2131165350;
+			// aapt resource value: 0x7f0700a3
+			public const int notification_main_column_container = 2131165347;
 			
 			// aapt resource value: 0x7f07004e
 			public const int parallax = 2131165262;
@@ -2702,11 +2696,11 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f07004c
 			public const int right = 2131165260;
 			
-			// aapt resource value: 0x7f0700ac
-			public const int right_icon = 2131165356;
+			// aapt resource value: 0x7f0700a9
+			public const int right_icon = 2131165353;
 			
-			// aapt resource value: 0x7f0700a8
-			public const int right_side = 2131165352;
+			// aapt resource value: 0x7f0700a5
+			public const int right_side = 2131165349;
 			
 			// aapt resource value: 0x7f07000c
 			public const int save_image_matrix = 2131165196;
@@ -2810,8 +2804,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f07004d
 			public const int start = 2131165261;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int status_bar_latest_event_content = 2131165347;
+			// aapt resource value: 0x7f0700a0
+			public const int status_bar_latest_event_content = 2131165344;
 			
 			// aapt resource value: 0x7f070078
 			public const int submenuarrow = 2131165304;
@@ -2846,8 +2840,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070015
 			public const int textinput_error = 2131165205;
 			
-			// aapt resource value: 0x7f0700a9
-			public const int time = 2131165353;
+			// aapt resource value: 0x7f0700a6
+			public const int time = 2131165350;
 			
 			// aapt resource value: 0x7f07001c
 			public const int title = 2131165212;
@@ -2882,9 +2876,6 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070013
 			public const int transition_transform = 2131165203;
 			
-			// aapt resource value: 0x7f07009b
-			public const int txtNumber = 2131165339;
-			
 			// aapt resource value: 0x7f07002f
 			public const int uniform = 2131165231;
 			
@@ -2897,8 +2888,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f070016
 			public const int view_offset_helper = 2131165206;
 			
-			// aapt resource value: 0x7f0700b2
-			public const int visible = 2131165362;
+			// aapt resource value: 0x7f0700af
+			public const int visible = 2131165359;
 			
 			// aapt resource value: 0x7f07003e
 			public const int withText = 2131165246;
@@ -3041,112 +3032,118 @@ namespace CityMapXamarin.Droid
 			public const int abc_select_dialog_material = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int design_bottom_navigation_item = 2130903066;
+			public const int city_list_item_template = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int design_bottom_sheet_dialog = 2130903067;
+			public const int CityPage = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int design_layout_snackbar = 2130903068;
+			public const int design_bottom_navigation_item = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int design_layout_snackbar_include = 2130903069;
+			public const int design_bottom_sheet_dialog = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int design_layout_tab_icon = 2130903070;
+			public const int design_layout_snackbar = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int design_layout_tab_text = 2130903071;
+			public const int design_layout_snackbar_include = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int design_menu_item_action_area = 2130903072;
+			public const int design_layout_tab_icon = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int design_navigation_item = 2130903073;
+			public const int design_layout_tab_text = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int design_navigation_item_header = 2130903074;
+			public const int design_menu_item_action_area = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int design_navigation_item_separator = 2130903075;
+			public const int design_navigation_item = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int design_navigation_item_subheader = 2130903076;
+			public const int design_navigation_item_header = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int design_navigation_menu = 2130903077;
+			public const int design_navigation_item_separator = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int design_navigation_menu_item = 2130903078;
+			public const int design_navigation_item_subheader = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int design_text_input_password_icon = 2130903079;
+			public const int design_navigation_menu = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int MainPage = 2130903080;
+			public const int design_navigation_menu_item = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int notification_action = 2130903081;
+			public const int design_text_input_password_icon = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int notification_action_tombstone = 2130903082;
+			public const int MainPage = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int notification_media_action = 2130903083;
+			public const int notification_action = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int notification_media_cancel_action = 2130903084;
+			public const int notification_action_tombstone = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int notification_template_big_media = 2130903085;
+			public const int notification_media_action = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int notification_template_big_media_custom = 2130903086;
+			public const int notification_media_cancel_action = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int notification_template_big_media_narrow = 2130903087;
+			public const int notification_template_big_media = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_template_big_media_narrow_custom = 2130903088;
+			public const int notification_template_big_media_custom = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_template_custom_big = 2130903089;
+			public const int notification_template_big_media_narrow = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_icon_group = 2130903090;
+			public const int notification_template_big_media_narrow_custom = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_lines_media = 2130903091;
+			public const int notification_template_custom_big = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_media = 2130903092;
+			public const int notification_template_icon_group = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_media_custom = 2130903093;
+			public const int notification_template_lines_media = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_part_chronometer = 2130903094;
+			public const int notification_template_media = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_part_time = 2130903095;
+			public const int notification_template_media_custom = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int select_dialog_item_material = 2130903096;
+			public const int notification_template_part_chronometer = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int select_dialog_multichoice_material = 2130903097;
+			public const int notification_template_part_time = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int select_dialog_singlechoice_material = 2130903098;
+			public const int select_dialog_item_material = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int SplashScreen = 2130903099;
+			public const int select_dialog_multichoice_material = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int support_simple_spinner_dropdown_item = 2130903100;
+			public const int select_dialog_singlechoice_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int tooltip = 2130903101;
+			public const int SplashScreen = 2130903101;
+			
+			// aapt resource value: 0x7f03003e
+			public const int support_simple_spinner_dropdown_item = 2130903102;
+			
+			// aapt resource value: 0x7f03003f
+			public const int tooltip = 2130903103;
 			
 			static Layout()
 			{

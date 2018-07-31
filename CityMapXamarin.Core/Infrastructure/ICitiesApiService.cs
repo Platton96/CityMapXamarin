@@ -1,7 +1,7 @@
 ﻿using CityMapXamarin.Core.Models;
 using System.Threading.Tasks;
 
-namespace CityMapXamarin.Core.Infastrucure
+namespace CityMapXamarin.Core.Infrastructure
 {
     public interface ICitiesApiService
     {

@@ -4,25 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:textSize="50sp"
-        android:gravity="center"
+    <MvxListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtNumber"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        local:MvxBind="Text Number" />
-    <Button
-        android:text="Increment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnIncrement"
-        local:MvxBind="Click IncrementCommand" />
-    <Button
-        android:text="Decrement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnDecrement"
-        local:MvxBind="Click DecrementCommand" />
+        android:layout_height="match_parent"
+        local:MvxItemTemplate="@layout/city_list_item_template"
+        local:MvxBind="ItemsSource Cities; ItemClick NavigateToCityCommand" />
 </LinearLayout>

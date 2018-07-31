@@ -1,4 +1,4 @@
-﻿using CityMapXamarin.Core.Infastrucure;
+﻿using CityMapXamarin.Core.Infrastructure;
 using CityMapXamarin.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
