@@ -16,6 +16,11 @@
       android:padding="16dp"
       local:MvxBind="Text Name"
       android:textAppearance="?android:attr/textAppearanceLarge" />
+  <Button
+    android:id="@+id/button_map_id"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:text="Map" />
 
 </LinearLayout>
 <!---->
