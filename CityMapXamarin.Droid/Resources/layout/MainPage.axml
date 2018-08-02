@@ -9,10 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Map" />
-    <MvxListView
+    <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
         android:id="@+id/CitiesList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        local:MvxItemTemplate="@layout/city_list_item_template"
-        local:MvxBind="ItemsSource Cities; ItemClick NavigateToCityCommand" />
+        android:layout_height="match_parent" />
 </LinearLayout>

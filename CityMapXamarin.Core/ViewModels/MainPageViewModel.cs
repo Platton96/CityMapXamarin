@@ -19,7 +19,7 @@ namespace CityMapXamarin.Core.ViewModels
         public ICommand IncrementCommand => new MvxCommand(DoIncrement);
 
         public ICommand DecrementCommand => new MvxCommand(DoDecrement);
-        public ICommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
+        public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
 
         public int Number
         {

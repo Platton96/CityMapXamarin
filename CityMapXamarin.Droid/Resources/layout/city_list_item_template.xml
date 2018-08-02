@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:local="http://schemas.android.com/apk/res-auto"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="4dip">
+              android:layout_height="wrap_content"
+               android:padding="4dip"
+               android:id="@+id/cityItemCell">
   <ImageView
+    android:id="@+id/CityIamge"
     android:layout_width="140dp"
-    android:layout_height="100dp"
-    local:MvxBind="Drawable ImageUrl, Converter=TypeToImageString"/>
+    android:layout_height="100dp"/>
   <TextView
-      android:layout_width="match_parent"
+      android:id="@+id/CityName"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
       android:padding="16dp"
-      local:MvxBind="Text Name"
       android:textAppearance="?android:attr/textAppearanceLarge" />
   <Button
     android:id="@+id/button_map_id"
@@ -22,5 +22,5 @@
     android:layout_width="wrap_content"
     android:text="Map" />
 
-</LinearLayout>
+</LinearLayout >
 <!---->
