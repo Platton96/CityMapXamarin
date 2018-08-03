@@ -10,26 +10,14 @@ namespace CityMapXamarin.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        private int _number;
         private readonly INavigationManager _navigationManager;
 
         private ObservableCollection<CityModel> _cities;
 
         private readonly ICitiesService _citiesService;
-        public ICommand IncrementCommand => new MvxCommand(DoIncrement);
-
-        public ICommand DecrementCommand => new MvxCommand(DoDecrement);
         public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
+        public IMvxCommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
 
-        public int Number
-        {
-            get => _number;
-            set
-            {
-                _number = value;
-                RaisePropertyChanged(() => Number);
-            }
-        }
 
         public ObservableCollection<CityModel> Cities
         {
@@ -59,14 +47,9 @@ namespace CityMapXamarin.Core.ViewModels
             await _navigationManager.NavigateToCityAsync(city);
         }
 
-        private void DoIncrement()
+        private async Task DoNavigateToCityMapAsync()
         {
-            Number++;
-        }
-
-        private void DoDecrement()
-        {
-            Number--;
+            await _navigationManager.NavigateToCityMapAsync();
         }
     }
 }

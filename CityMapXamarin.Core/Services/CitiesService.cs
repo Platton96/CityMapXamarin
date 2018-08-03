@@ -8,6 +8,7 @@ namespace CityMapXamarin.Core.Services
     public class CitiesService : ICitiesService
     {
         private readonly ICitiesApiService _citiesApiService;
+        public IEnumerable<CityModel> Cities { get; private set; }
 
         public CitiesService(ICitiesApiService citiesApiService)
         {
@@ -16,7 +17,8 @@ namespace CityMapXamarin.Core.Services
 
         public async Task<IEnumerable<CityModel>> GetCitiesAsync()
         {
-            return (await _citiesApiService.GetDataAsync()).Cities;
+            Cities= (await _citiesApiService.GetDataAsync()).Cities;
+            return Cities;
         }
-    }
+    } 
 }

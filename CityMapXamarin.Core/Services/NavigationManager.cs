@@ -2,6 +2,7 @@
 using CityMapXamarin.Core.Models;
 using CityMapXamarin.Core.ViewModels;
 using MvvmCross.Navigation;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace CityMapXamarin.Core.Services
@@ -17,6 +18,11 @@ namespace CityMapXamarin.Core.Services
         public async Task NavigateToCityAsync(CityModel city)
         {
             await _navigationService.Navigate<CityViewModel, CityModel>(city);
+        }
+
+        public async Task NavigateToCityMapAsync()
+        {
+            await _navigationService.Navigate<CityMapViewModel>();
         }
     }
 }

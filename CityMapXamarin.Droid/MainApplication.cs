@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Contexts;
 using Android.App;
+using Android.Content;
 using Android.Runtime;
 using CityMapXamarin.Core;
 using MvvmCross.Platforms.Android.Core;

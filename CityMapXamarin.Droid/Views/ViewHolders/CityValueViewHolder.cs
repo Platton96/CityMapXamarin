@@ -32,11 +32,9 @@ namespace CityMapXamarin.Droid.Views.ViewHolders
         private void ApplyBindings()
         {
             var bindingSet = this.CreateBindingSet<CityValueViewHolder, CityModel>();
-            var converter = new TypeToImageStringValueConverter();
             bindingSet.Bind(_cityName)
                 .For(p => p.Text)
                 .To(vm => vm.Name);
-            //var a = new ConverterService();
             bindingSet.Bind(_cityImage)
                 .For(p => p.Drawable)
                 .To(vm => vm.ImageUrl).WithConversion("TypeToImageString");
@@ -50,10 +48,12 @@ namespace CityMapXamarin.Droid.Views.ViewHolders
             _cityImage = itemView.FindViewById<ImageView>(Resource.Id.CityIamge);
             _cityItemCell = itemView.FindViewById<LinearLayout>(Resource.Id.cityItemCell);
             _cityMapBtn = itemView.FindViewById<Button>(Resource.Id.button_map_id);
+
             _cityItemCell.Click += (s, e) =>
             {
                 CityClicked(DataContext as CityModel, null);
             };
+
             _cityMapBtn.Click += (s, e) =>
             {
                 var currentItemCity = DataContext as CityModel;
