@@ -8,16 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/city_image_id"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_gravity="center"
-            local:MvxBind="Drawable City.ImageUrl, Converter=TypeToImageString" />
+            android:layout_gravity="center" />
         <TextView
+            android:id="@+id/description_city_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="4dip"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            local:MvxBind="Text City.Description" />
+            android:padding="4dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 </ScrollView>

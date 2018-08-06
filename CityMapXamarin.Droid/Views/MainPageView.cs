@@ -26,18 +26,16 @@ namespace CityMapXamarin.Droid.Views
             _adapter = new CityValueAdapter((IMvxAndroidBindingContext)BindingContext, ShowCityMap);
 
             SetContentView(Resource.Layout.MainPage);
+            InitComponents();
+            ApplyBindings();
+
+        }
+        private void InitComponents()
+        {
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.CitiesList);
             _recyclerView.Adapter = _adapter;
             _cityMapBtn = FindViewById<Button>(Resource.Id.button_map_id);
-
         }
-        public override View OnCreateView(string name, Context context, IAttributeSet attrs)
-        {
-            var view = base.OnCreateView(name, context, attrs);
-            ApplyBindings();
-            return view;
-        }
-
         private void ApplyBindings()
         {
             var bindingSet = this.CreateBindingSet<MainPageView, MainPageViewModel>();

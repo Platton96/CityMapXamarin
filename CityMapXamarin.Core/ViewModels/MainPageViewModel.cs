@@ -49,7 +49,7 @@ namespace CityMapXamarin.Core.ViewModels
 
         private async Task DoNavigateToCityMapAsync()
         {
-            await _navigationManager.NavigateToCityMapAsync();
+            await _navigationManager.NavigateToCityMapAsync(_cities);
         }
     }
 }

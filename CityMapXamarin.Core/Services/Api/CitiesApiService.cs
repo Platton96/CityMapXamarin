@@ -25,11 +25,17 @@ namespace CityMapXamarin.Core.Services.Api
         {
             if (responseMessage.StatusCode != HttpStatusCode.OK)
             {
-                throw new HttpRequestException();
+                return null;
             }
-
-            var contentResponce = await responseMessage.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Data>(contentResponce);
+            try
+            {
+                var contentResponce = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Data>(contentResponce);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

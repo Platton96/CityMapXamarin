@@ -20,9 +20,9 @@ namespace CityMapXamarin.Core.Services
             await _navigationService.Navigate<CityViewModel, CityModel>(city);
         }
 
-        public async Task NavigateToCityMapAsync()
+        public async Task NavigateToCityMapAsync(ObservableCollection<CityModel>  cities)
         {
-            await _navigationService.Navigate<CityMapViewModel>();
+            await _navigationService.Navigate<CityMapViewModel, ObservableCollection<CityModel>>(cities);
         }
     }
 }
