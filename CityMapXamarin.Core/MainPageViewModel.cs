@@ -14,6 +14,8 @@ namespace CityMapXamarin.Core.ViewModels
 
         private ObservableCollection<CityModel> _cities;
 
+        private string _hello = "Hello iOS";
+
         private readonly ICitiesService _citiesService;
         public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
         public IMvxCommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
@@ -26,6 +28,16 @@ namespace CityMapXamarin.Core.ViewModels
             {
                 _cities = value;
                 RaisePropertyChanged(() => Cities);
+            }
+        }
+
+        public string Hello
+        {
+            get => _hello;
+            set
+            {
+                _hello = value;
+                RaisePropertyChanged(() => Hello);
             }
         }
 
