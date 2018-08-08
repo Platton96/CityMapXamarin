@@ -8,7 +8,7 @@ using MvvmCross.ViewModels;
 
 namespace CityMapXamarin.Core.ViewModels
 {
-    public class MainPageViewModel : MvxViewModel
+    public class CityMapViewMaodel : MvxViewModel
     {
         private readonly INavigationManager _navigationManager;
 
@@ -41,7 +41,7 @@ namespace CityMapXamarin.Core.ViewModels
             }
         }
 
-        public MainPageViewModel(ICitiesService citiesService, INavigationManager navigationManager)
+        public CityMapViewMaodel(ICitiesService citiesService, INavigationManager navigationManager)
         {
             _citiesService = citiesService;
             _navigationManager = navigationManager;
