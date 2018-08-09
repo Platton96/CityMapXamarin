@@ -2,7 +2,6 @@
 using Android.Views;
 using Android.Widget;
 using CityMapXamarin.Core.Models;
-using CityMapXamarin.Droid.Converters;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;

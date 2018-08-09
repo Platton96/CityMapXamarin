@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Util;
-using Android.Views;
 using Android.Widget;
 using CityMapXamarin.Core.Models;
 using CityMapXamarin.Core.ViewModels;
@@ -15,7 +13,7 @@ using MvvmCross.Platforms.Android.Views;
 namespace CityMapXamarin.Droid.Views
 {
     [Activity(Label = "Main page", MainLauncher = true)]
-    public class MainPageView : MvxActivity<CityMapViewMaodel>
+    public class MainPageView : MvxActivity<MainPageViewModel>
     {
         private MvxRecyclerView _recyclerView;
         private CityValueAdapter _adapter;
@@ -23,8 +21,6 @@ namespace CityMapXamarin.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            _adapter = new CityValueAdapter((IMvxAndroidBindingContext)BindingContext, ShowCityMap);
-
             SetContentView(Resource.Layout.MainPage);
             InitComponents();
             ApplyBindings();
@@ -33,12 +29,13 @@ namespace CityMapXamarin.Droid.Views
         private void InitComponents()
         {
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.CitiesList);
+            _adapter = new CityValueAdapter((IMvxAndroidBindingContext)BindingContext, ShowCityMap);
             _recyclerView.Adapter = _adapter;
             _cityMapBtn = FindViewById<Button>(Resource.Id.button_map_id);
         }
         private void ApplyBindings()
         {
-            var bindingSet = this.CreateBindingSet<MainPageView, CityMapViewMaodel>();
+            var bindingSet = this.CreateBindingSet<MainPageView, MainPageViewModel>();
             bindingSet.Bind(_adapter).For(b => b.CityItemClick).To(vm => vm.NavigateToCityCommand);
             bindingSet.Bind(_adapter).For(b => b.ItemsSource).To(vm => vm.Cities);
             bindingSet.Bind(_cityMapBtn).To(vm => vm.NavigateToCityMapCommand);

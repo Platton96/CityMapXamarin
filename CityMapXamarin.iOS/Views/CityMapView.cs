@@ -39,14 +39,13 @@ namespace Blank.Views
         }
         private void ApplyBindings()
         {
-            var bindingSet = this.CreateBindingSet<CityMapView, CityMapViewMaodel>();
+            var bindingSet = this.CreateBindingSet<CityMapView, CityMapViewModel>();
             bindingSet.Bind(this).For(b => b.Cities).To(vm => vm.Cities);
             bindingSet.Apply();
         }
         
         private void AddMarckers()
         {
-            //                      }));
             foreach (var city in Cities)
             {
                 _map.AddAnnotation(new MKPointAnnotation()

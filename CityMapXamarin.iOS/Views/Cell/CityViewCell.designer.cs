@@ -15,22 +15,22 @@ namespace Blank.Views.Cell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView CityImageView { get; set; }
+        UIKit.UIImageView CityImage { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel CityName { get; set; }
+        UIKit.UILabel CityNameText { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (CityImageView != null) {
-                CityImageView.Dispose ();
-                CityImageView = null;
+            if (CityImage != null) {
+                CityImage.Dispose ();
+                CityImage = null;
             }
 
-            if (CityName != null) {
-                CityName.Dispose ();
-                CityName = null;
+            if (CityNameText != null) {
+                CityNameText.Dispose ();
+                CityNameText = null;
             }
         }
     }

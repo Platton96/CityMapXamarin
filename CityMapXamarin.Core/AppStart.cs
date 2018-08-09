@@ -14,7 +14,7 @@ namespace CityMapXamarin.Core
             Mvx.LazyConstructAndRegisterSingleton<ICitiesService, CitiesService>();
             Mvx.LazyConstructAndRegisterSingleton<ICitiesApiService, CitiesApiService>();
             Mvx.LazyConstructAndRegisterSingleton<INavigationManager, NavigationManager>();
-            RegisterAppStart<CityMapViewMaodel>();
+            RegisterAppStart<MainPageViewModel>();
         } 
     }
 }

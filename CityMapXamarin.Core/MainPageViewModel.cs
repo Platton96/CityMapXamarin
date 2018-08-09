@@ -8,7 +8,7 @@ using MvvmCross.ViewModels;
 
 namespace CityMapXamarin.Core.ViewModels
 {
-    public class CityMapViewMaodel : MvxViewModel
+    public class MainPageViewModel : MvxViewModel
     {
         private readonly INavigationManager _navigationManager;
 
@@ -17,8 +17,8 @@ namespace CityMapXamarin.Core.ViewModels
         private string _hello = "Hello iOS";
 
         private readonly ICitiesService _citiesService;
-        public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
-        public IMvxCommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
+        public ICommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
+        public ICommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
 
 
         public ObservableCollection<CityModel> Cities
@@ -41,7 +41,7 @@ namespace CityMapXamarin.Core.ViewModels
             }
         }
 
-        public CityMapViewMaodel(ICitiesService citiesService, INavigationManager navigationManager)
+        public MainPageViewModel(ICitiesService citiesService, INavigationManager navigationManager)
         {
             _citiesService = citiesService;
             _navigationManager = navigationManager;

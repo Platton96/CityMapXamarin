@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Blank.Views.TableSource;
 using CityMapXamarin.Core.Models;
 using CityMapXamarin.Core.ViewModels;
 using CoreGraphics;
@@ -12,11 +13,12 @@ using UIKit;
 
 namespace Blank.Views
 {
-    public  class MainPageView : MvxViewController<CityMapViewMaodel>
+    public  class MainPageView : MvxViewController<MainPageViewModel>
     {
         private UIButton _mapButton;
         private UIView _mainView;
-        private UILabel _helloLabel;
+        private UICollectionView _collectionView;
+        private CitiesCollectionSource _citiesCollectionSource;
         public MainPageView() 
         {
         }
@@ -33,24 +35,26 @@ namespace Blank.Views
             _mainView.BackgroundColor = UIColor.White;
             View.AddSubview(_mainView);
 
-            _helloLabel = new UILabel(new CGRect(View.Frame.Width-90, 80, 80, 80));
 
-            _mapButton = new UIButton(new CGRect(0,150,150,80));
+            _mapButton = new UIButton(new CGRect(0,80,120,60));
             _mapButton.BackgroundColor = UIColor.Green;
-            _mapButton.TitleLabel.TextColor = UIColor.Red;
-            _mapButton.Title(UIControlState.Normal);
-            _mapButton.TitleLabel.Text = "hgfgfghgf";
-            _mapButton.SetTitle("hello world", UIControlState.Normal);
+            _mainView.AddSubview(_mapButton);
 
+            var layout = new UICollectionViewFlowLayout();
+         //   layout.SectionInset = new UIEdgeInsets(50, 50, 100, 100);
+            _collectionView = new UICollectionView(new CGRect(0, _mapButton.Frame.Bottom+20, _mainView.Frame.Width, _mainView.Frame.Height - _mapButton.Frame.Bottom - 20), layout);
+            _mainView.AddSubview(_collectionView);
+            _citiesCollectionSource = new CitiesCollectionSource(_collectionView);
+            _collectionView.Source = _citiesCollectionSource;
+            _collectionView.BackgroundColor = UIColor.White;
 
-            _mainView.AddSubviews(_mapButton,_helloLabel);
         }
 
         private void ApplyBindings()
         {
-            var bindingSet = this.CreateBindingSet<MainPageView, CityMapViewMaodel>();
-            bindingSet.Bind(_helloLabel).For(b => b.Text).To(vm => vm.Hello);
+            var bindingSet = this.CreateBindingSet<MainPageView, MainPageViewModel>();
             bindingSet.Bind(_mapButton).To(vm => vm.NavigateToCityMapCommand);
+            bindingSet.Bind(_citiesCollectionSource).For(b => b.ItemsSource).To(vm => vm.Cities);
             bindingSet.Apply();
         }
     }
