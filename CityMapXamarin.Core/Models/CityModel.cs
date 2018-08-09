@@ -17,5 +17,16 @@ namespace CityMapXamarin.Core.Models
         public double Latitude { get; set; }
         [DataMember(Name = "longitude")]
         public double Longitude { get; set; }
+
+        private string _filePath;
+        public string FilePath
+        {
+            get=>_filePath;
+            private set
+            {
+
+            }
+        }
+        
     }
 }
