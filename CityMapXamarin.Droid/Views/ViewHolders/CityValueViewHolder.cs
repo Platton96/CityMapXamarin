@@ -37,7 +37,7 @@ namespace CityMapXamarin.Droid.Views.ViewHolders
                 .To(vm => vm.Name);
             bindingSet.Bind(_cityImage)
                 .For(p => p.Drawable)
-                .To(vm => vm.ImageUrl).WithConversion("TypeToImageString");
+                .To(m => m.FilePath).WithConversion<ImagePathToDrawableConverter>();
 
             bindingSet.Apply();
         }
@@ -48,6 +48,7 @@ namespace CityMapXamarin.Droid.Views.ViewHolders
             _cityImage = itemView.FindViewById<ImageView>(Resource.Id.CityIamge);
             _cityItemCell = itemView.FindViewById<LinearLayout>(Resource.Id.cityItemCell);
             _cityMapBtn = itemView.FindViewById<Button>(Resource.Id.button_map_id);
+
 
             _cityItemCell.Click += (s, e) =>
             {

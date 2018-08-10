@@ -1,5 +1,5 @@
-﻿using CityMapXamarin.Core.Infrastructure;
-using CityMapXamarin.Core.Models;
+﻿using CityMapXamarin.Core.DataModels;
+using CityMapXamarin.Core.Infrastructure;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -12,7 +12,7 @@ namespace CityMapXamarin.Core.Services.Api
     {
         private const string WEB_API_URL = "https://api.myjson.com/bins/7ybe5";
 
-        public async Task<Data> GetDataAsync()
+        public async Task<CitiesData> GetDataAsync()
         {
             using (var httpClient = new HttpClient())
             {
@@ -21,7 +21,7 @@ namespace CityMapXamarin.Core.Services.Api
             }
         }
 
-        private async Task<Data> GetContentResponceAsync(HttpResponseMessage responseMessage)
+        private async Task<CitiesData> GetContentResponceAsync(HttpResponseMessage responseMessage)
         {
             if (responseMessage.StatusCode != HttpStatusCode.OK)
             {
@@ -30,11 +30,24 @@ namespace CityMapXamarin.Core.Services.Api
             try
             {
                 var contentResponce = await responseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Data>(contentResponce);
+                return JsonConvert.DeserializeObject<CitiesData>(contentResponce);
             }
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task<byte[]> GetCityImgeAsync(string imageUrl)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var responce = await httpClient.GetAsync(new Uri(imageUrl));
+                if (responce.StatusCode != HttpStatusCode.OK)
+                {
+                    return null;
+                }
+                return await responce.Content.ReadAsByteArrayAsync();
             }
         }
     }

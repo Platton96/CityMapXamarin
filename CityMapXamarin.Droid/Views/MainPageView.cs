@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Util;
-using Android.Views;
 using Android.Widget;
 using CityMapXamarin.Core.Models;
 using CityMapXamarin.Core.ViewModels;

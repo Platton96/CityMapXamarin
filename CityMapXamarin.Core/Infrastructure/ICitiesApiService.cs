@@ -1,10 +1,11 @@
-﻿using CityMapXamarin.Core.Models;
+﻿using CityMapXamarin.Core.DataModels;
 using System.Threading.Tasks;
 
 namespace CityMapXamarin.Core.Infrastructure
 {
     public interface ICitiesApiService
     {
-        Task<Data> GetDataAsync();
+        Task<CitiesData> GetDataAsync();
+        Task<byte[]> GetCityImgeAsync(string imageUrl);
     }
 }
