@@ -30,7 +30,7 @@ namespace CityMapXamarin.Droid.Views
         private void ApplyBindings()
         {
             var bindingSet = this.CreateBindingSet<CityView, CityViewModel>();
-            bindingSet.Bind(_cityImage).For(b => b.Drawable).To(vm => vm.City.ImageUrl).WithConversion<ImagePathToDrawableConverter>();
+            bindingSet.Bind(_cityImage).For(b => b.Drawable).To(vm => vm.City.FilePath).WithConversion<ImagePathToDrawableConverter>();
             bindingSet.Bind(_cityDescription).For(b => b.Text).To(vm => vm.City.Description);
 
             bindingSet.Apply();
