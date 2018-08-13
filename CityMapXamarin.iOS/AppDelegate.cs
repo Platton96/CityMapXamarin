@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using CityMapXamarin.Core;
+using Foundation;
+using MvvmCross.Platforms.Ios.Core;
 using UIKit;
 
 namespace Blank
@@ -6,7 +8,7 @@ namespace Blank
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : MvxApplicationDelegate<MvxIosSetup<App>, App>
     {
         // class-level declarations
 
@@ -19,13 +21,8 @@ namespace Blank
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // create a new window instance based on the screen size
-            Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            Window.RootViewController = new UIViewController();
-
-            // make the window visible
-            Window.MakeKeyAndVisible();
-
-            return true;
+            var result = base.FinishedLaunching(application, launchOptions);
+            return result;
         }
 
         public override void OnResignActivation(UIApplication application)

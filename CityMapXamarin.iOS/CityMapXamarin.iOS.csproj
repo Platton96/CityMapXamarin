@@ -60,14 +60,24 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\ImagePathToImageConverter.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Cell\CityViewCell.cs" />
+    <Compile Include="Views\Cell\CityViewCell.designer.cs">
+      <DependentUpon>CityViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CityMapView.cs" />
+    <Compile Include="Views\CityView.cs" />
+    <Compile Include="Views\CollectionSource\CitiesCollectionSource.cs" />
+    <Compile Include="Views\MainPageView.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <None Include="packages.config" />
+    <InterfaceDefinition Include="Views\Cell\CityViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross, Version=6.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -133,6 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CityMapXamarin.Core\CityMapXamarin.Core.csproj">
+      <Project>{4880A5D1-E4CB-4AE5-8B87-4F26B26FC7BF}</Project>
+      <Name>CityMapXamarin.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ using MvvmCross.ViewModels;
 
 namespace CityMapXamarin.Core
 {
-    public class AppStart : MvxApplication
+    public class App : MvxApplication
     {
         public override void Initialize()
         {

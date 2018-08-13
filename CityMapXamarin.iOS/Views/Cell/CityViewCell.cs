@@ -1,12 +1,11 @@
 ﻿using System;
-
 using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using UIKit;
 
 namespace Blank.Views.Cell
 {
-    public partial class CityViewCell : MvxTableViewCell
+    public partial class CityViewCell : MvxCollectionViewCell
     {
         public static readonly NSString Key = new NSString("CityViewCell");
         public static readonly UINib Nib;
@@ -15,10 +14,18 @@ namespace Blank.Views.Cell
         {
             Nib = UINib.FromName("CityViewCell", NSBundle.MainBundle);
         }
-
+        public UILabel Name
+        {
+            get => CityNameText;
+            set { CityNameText = value; }
+        }
+        public UIImageView ImageView
+        {
+            get => CityImage;
+            set { CityImage = value; }
+        }
         protected CityViewCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
         }
     }
 }

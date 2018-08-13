@@ -11,10 +11,9 @@ namespace CityMapXamarin.Droid.Converters
     {
         protected override Drawable Convert(string value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Drawable image = null;
             var currentActivity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
             var decodedByte = BitmapFactory.DecodeFile($"{currentActivity.FilesDir}/{value}");
-            image = new BitmapDrawable(currentActivity.Resources, decodedByte);
+            var image = new BitmapDrawable(currentActivity.Resources, decodedByte);
 
             return image;
         }
