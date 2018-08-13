@@ -56,7 +56,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\TypeToImageStringConverter.cs" />
+    <Compile Include="Converters\ImagePathToDrawableConverter.cs" />
     <Compile Include="Infrastructure\Delegates.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -88,6 +88,12 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.File">
+      <Version>6.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2" />
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">

@@ -11,8 +11,7 @@ using UIKit;
 namespace Blank.Views
 {
     public class CityMapView : MvxViewController<CityMapViewModel>
-    {
-        private UIButton _mapButton;
+    { 
         private UIView _mainView;
         private MKMapView _map;
         public IEnumerable<CityModel> Cities { get; set; }

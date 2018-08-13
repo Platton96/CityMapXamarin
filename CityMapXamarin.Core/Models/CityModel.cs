@@ -1,21 +1,25 @@
-﻿using System.Runtime.Serialization;
+﻿using CityMapXamarin.Core.DataModels;
+using MvvmCross;
+using System.Runtime.Serialization;
 
 namespace CityMapXamarin.Core.Models
 {
     [DataContract]
-    public class CityModel
+    public class CityModel : CityData
     {
-        [DataMember(Name = "id")]
-        public int Id { get; set; }
-        [DataMember(Name = "title")]
-        public string Name { get; set; }
-        [DataMember(Name = "description")]
-        public string Description { get; set; }
-        [DataMember(Name = "url")]
-        public string ImageUrl { get; set; }
-        [DataMember(Name = "latitude")]
-        public double Latitude { get; set; }
-        [DataMember(Name = "longitude")]
-        public double Longitude { get; set; }
+        [DataMember]
+        public string FilePath { get; set; }
+
+        public CityModel() { }
+        public CityModel (CityData cityData, string filePath )
+        {
+            Name = cityData.Name;
+            Description = cityData.Description;
+            Id = cityData.Id;
+            ImageUrl = cityData.ImageUrl;
+            Longitude = cityData.Longitude;
+            Latitude = cityData.Latitude;
+            FilePath = filePath;
+        }
     }
 }

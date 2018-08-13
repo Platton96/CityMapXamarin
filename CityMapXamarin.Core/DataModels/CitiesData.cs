@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace CityMapXamarin.Core.Models
+namespace CityMapXamarin.Core.DataModels
 {
     [DataContract]
-    public class Data
+    public class CitiesData
     {
         [DataMember(Name = "photos")]
-        public IEnumerable<CityModel> Cities { get; set; }
+        public IEnumerable<CityData> Cities { get; set; }
     }
 }
