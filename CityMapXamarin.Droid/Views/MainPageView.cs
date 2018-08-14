@@ -12,7 +12,7 @@ using MvvmCross.Platforms.Android.Views;
 
 namespace CityMapXamarin.Droid.Views
 {
-    [Activity(Label = "Main page", MainLauncher = true)]
+    [Activity(Label = "Main page")]
     public class MainPageView : MvxActivity<MainPageViewModel>
     {
         private MvxRecyclerView _recyclerView;

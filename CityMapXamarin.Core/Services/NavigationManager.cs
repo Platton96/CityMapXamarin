@@ -15,6 +15,11 @@ namespace CityMapXamarin.Core.Services
             _navigationService = navigationService;
         }
 
+        public async Task NavigateMainPageAsync()
+        {
+            await _navigationService.Navigate<MainPageViewModel>();
+        }
+
         public async Task NavigateToCityAsync(CityModel city)
         {
             await _navigationService.Navigate<CityViewModel, CityModel>(city);
@@ -24,5 +29,6 @@ namespace CityMapXamarin.Core.Services
         {
             await _navigationService.Navigate<CityMapViewModel, ObservableCollection<CityModel>>(cities);
         }
+
     }
 }

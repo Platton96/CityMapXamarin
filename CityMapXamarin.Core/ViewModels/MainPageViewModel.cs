@@ -11,10 +11,10 @@ namespace CityMapXamarin.Core.ViewModels
     public class MainPageViewModel : MvxViewModel
     {
         private readonly INavigationManager _navigationManager;
+        private readonly ICitiesService _citiesService;
 
         private ObservableCollection<CityModel> _cities;
 
-        private readonly ICitiesService _citiesService;
         public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
         public IMvxCommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
 

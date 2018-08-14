@@ -22,7 +22,7 @@ namespace CityMapXamarin.Core.Services
 
         public async Task<IEnumerable<CityModel>> GetCitiesAsync()
         {
-            var citiesJason = SettingsManager.AccessCitities;
+            var citiesJason = SettingsManager.CititiesData;
 
             if (!string.IsNullOrEmpty(citiesJason))
             {
@@ -32,13 +32,13 @@ namespace CityMapXamarin.Core.Services
             var citiesData = await _citiesApiService.GetDataAsync();
             var cities = new List<CityModel>();
 
-            foreach (var cityData in citiesData.Cities)
+            foreach (var city in citiesData.Cities)
             {
-                var cityModel = await GetCityAsync(cityData);
+                var cityModel = await GetCityAsync(city);
                 cities.Add(cityModel);
             }
 
-            SettingsManager.AccessCitities = JsonConvert.SerializeObject(cities);
+            SettingsManager.CititiesData = JsonConvert.SerializeObject(cities);
 
             return cities;
         }

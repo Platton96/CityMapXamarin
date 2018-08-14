@@ -5,7 +5,7 @@ namespace CityMapXamarin.Core.ViewModels
 {
     public class CityViewModel : MvxViewModel<CityModel>
     {
-        CityModel _city;
+        private CityModel _city;
         public CityModel City
         {
             get => _city;
