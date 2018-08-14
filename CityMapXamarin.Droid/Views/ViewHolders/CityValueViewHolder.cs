@@ -44,10 +44,10 @@ namespace CityMapXamarin.Droid.Views.ViewHolders
 
         private void InitComponents(View itemView)
         {
-            _cityName = itemView.FindViewById<TextView>(Resource.Id.CityName);
-            _cityImage = itemView.FindViewById<ImageView>(Resource.Id.CityIamge);
-            _cityItemCell = itemView.FindViewById<LinearLayout>(Resource.Id.cityItemCell);
-            _cityMapBtn = itemView.FindViewById<Button>(Resource.Id.button_map_id);
+            _cityName = itemView.FindViewById<TextView>(Resource.Id.text_city_name);
+            _cityImage = itemView.FindViewById<ImageView>(Resource.Id.image_city);
+            _cityItemCell = itemView.FindViewById<LinearLayout>(Resource.Id.city_item_cell);
+            _cityMapBtn = itemView.FindViewById<Button>(Resource.Id.btn_map);
 
 
             _cityItemCell.Click += (s, e) =>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using CityMapXamarin.Core.Infrastructure;
 using CityMapXamarin.Core.Models;
 using MvvmCross.Commands;

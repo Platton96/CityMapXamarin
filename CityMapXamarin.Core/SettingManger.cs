@@ -6,8 +6,8 @@ namespace CityMapXamarin.Core
 {
     public static class SettingsManager
     {
-        private const string CitiesKey = "access_cities";
-        private const string LastLoginTimeKey = "access_last_login_time";
+        private const string CitiesKey = "cities_data";
+        private const string LastLoginTimeKey = "last_login_time";
 
         private static ISettings AppSettings
         {

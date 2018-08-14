@@ -30,9 +30,9 @@ namespace CityMapXamarin.Droid.Views
         }
         private void InitComponents()
         {
-            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.CitiesList);
+            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.cities_list);
             _recyclerView.Adapter = _adapter;
-            _cityMapBtn = FindViewById<Button>(Resource.Id.button_map_id);
+            _cityMapBtn = FindViewById<Button>(Resource.Id.btn_main_map);
         }
         private void ApplyBindings()
         {

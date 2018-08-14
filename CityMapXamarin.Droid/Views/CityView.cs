@@ -23,8 +23,8 @@ namespace CityMapXamarin.Droid.Views
 
         private void InitComponents()
         {
-            _cityImage = FindViewById<ImageView>(Resource.Id.city_image_id);
-            _cityDescription = FindViewById<TextView>(Resource.Id.description_city_id);
+            _cityImage = FindViewById<ImageView>(Resource.Id.image_city_details);
+            _cityDescription = FindViewById<TextView>(Resource.Id.text_city_description);
         }
 
         private void ApplyBindings()

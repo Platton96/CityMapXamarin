@@ -26,7 +26,7 @@ namespace CityMapXamarin.Droid.Views
         {
             if (_googleMap == null)
             {
-                FragmentManager.FindFragmentById<MapFragment>(Resource.Id.googlemap).GetMapAsync(this);
+                FragmentManager.FindFragmentById<MapFragment>(Resource.Id.google_map).GetMapAsync(this);
             }
         }
         private void ApplyBindings()

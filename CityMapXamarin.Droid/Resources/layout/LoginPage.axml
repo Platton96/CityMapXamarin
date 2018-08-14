@@ -11,7 +11,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
         <TextView
-            android:id="@+id/text_error_message"
+            android:id="@+id/text_view_error_message"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Cheack password and email"

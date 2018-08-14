@@ -70,8 +70,12 @@ namespace CityMapXamarin.Core.ViewModels
             {
                 SettingsManager.LastLoginTime = DateTime.Now;
                 await _navigationManager.NavigateMainPageAsync();
+
             }
-            IsVisibleErrorMessage = true;
+            else
+            {
+                IsVisibleErrorMessage = true;
+            }
             
         }
         private bool IsCanGetMainPage()

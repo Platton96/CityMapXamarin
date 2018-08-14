@@ -5,19 +5,19 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
                android:padding="4dp"
-               android:id="@+id/cityItemCell">
+               android:id="@+id/city_item_cell">
   <ImageView
-    android:id="@+id/CityIamge"
+    android:id="@+id/image_city"
     android:layout_width="140dp"
     android:layout_height="100dp"/>
   <TextView
-      android:id="@+id/CityName"
+      android:id="@+id/text_city_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:padding="16dp"
       android:textAppearance="?android:attr/textAppearanceLarge" />
   <Button
-    android:id="@+id/button_map_id"
+    android:id="@+id/btn_map"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:text="in map" />

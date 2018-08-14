@@ -38,7 +38,7 @@ namespace CityMapXamarin.Droid.Views
             _email = FindViewById<EditText>(Resource.Id.input_email);
             _password= FindViewById<EditText>(Resource.Id.input_password);
             _loginBtn = FindViewById<AppCompatButton>(Resource.Id.btn_login);
-            _errorMessage = FindViewById<TextView>(Resource.Id.text_error_message);
+            _errorMessage = FindViewById<TextView>(Resource.Id.text_view_error_message);
         }
         private void ApplyBindings()
         {
