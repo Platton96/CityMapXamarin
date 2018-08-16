@@ -8,7 +8,7 @@ namespace CityMapXamarin.Core.Infrastructure
     {
         Task NavigateToCityAsync(CityModel city);
         Task NavigateToCityMapAsync(ObservableCollection<CityModel> cities);
-
+        Task NavigateToMicrochartAsync();
         Task NavigateMainPageAsync();
     }
 }

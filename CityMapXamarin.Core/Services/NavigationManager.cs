@@ -19,6 +19,10 @@ namespace CityMapXamarin.Core.Services
         {
             await _navigationService.Navigate<MainPageViewModel>();
         }
+        public async Task NavigateToMicrochartAsync()
+        {
+            await _navigationService.Navigate<MicrochartViewModel>();
+        }
 
         public async Task NavigateToCityAsync(CityModel city)
         {

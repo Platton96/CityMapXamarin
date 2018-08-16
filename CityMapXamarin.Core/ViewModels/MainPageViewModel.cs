@@ -3,19 +3,22 @@ using System.Threading.Tasks;
 using CityMapXamarin.Core.Infrastructure;
 using CityMapXamarin.Core.Models;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace CityMapXamarin.Core.ViewModels
 {
     public class MainPageViewModel : MvxViewModel
     {
-        private readonly INavigationManager _navigationManager;
         private readonly ICitiesService _citiesService;
+        private readonly IMvxNavigationService _navigationService;
 
         private ObservableCollection<CityModel> _cities;
 
         public IMvxCommand NavigateToCityCommand => new MvxAsyncCommand<CityModel>(DoNavigateToCityAsync);
         public IMvxCommand NavigateToCityMapCommand => new MvxAsyncCommand(DoNavigateToCityMapAsync);
+        public IMvxCommand NavigateToMicrochartCommand => new MvxAsyncCommand(DoNavigateToMicrochartAsync);
+        public IMvxCommand NavigateToRadialCommand => new MvxAsyncCommand(DoNavigateToRadialChartAsync);
 
 
         public ObservableCollection<CityModel> Cities
@@ -28,27 +31,34 @@ namespace CityMapXamarin.Core.ViewModels
             }
         }
 
-        public MainPageViewModel(ICitiesService citiesService, INavigationManager navigationManager)
+        public MainPageViewModel(ICitiesService citiesService, IMvxNavigationService navigationService)
         {
             _citiesService = citiesService;
-            _navigationManager = navigationManager;
+            _navigationService = navigationService;
         }
 
         public override async void ViewCreated()
         {
             base.ViewCreated();
             Cities = new ObservableCollection<CityModel>(await _citiesService.GetCitiesAsync());
-
         }
 
         private async Task DoNavigateToCityAsync(CityModel city)
         {
-            await _navigationManager.NavigateToCityAsync(city);
+            await _navigationService.Navigate<CityViewModel, CityModel>(city);
         }
 
         private async Task DoNavigateToCityMapAsync()
         {
-            await _navigationManager.NavigateToCityMapAsync(_cities);
+            await _navigationService.Navigate<CityMapViewModel, ObservableCollection<CityModel>>(_cities);
+        }
+        private async Task DoNavigateToMicrochartAsync()
+        {
+            await _navigationService.Navigate<MicrochartViewModel>();
+        }
+        private async Task DoNavigateToRadialChartAsync()
+        {
+            await _navigationService.Navigate<RadialGaugeChartViewModel>();
         }
     }
 }

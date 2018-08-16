@@ -1,5 +1,6 @@
 ﻿using CityMapXamarin.Core.Infrastructure;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace CityMapXamarin.Core.ViewModels
 {
     public class LoginViewModel :  MvxViewModel
     {
-        private readonly INavigationManager _navigationManager;
+        private readonly IMvxNavigationService _navigationService;  
 
         private const string DEFAULT_LOGIN = "123";
         private const string DEFAULT_PASSWORD = "123";
@@ -48,9 +49,9 @@ namespace CityMapXamarin.Core.ViewModels
             }
         }
 
-        public LoginViewModel(INavigationManager navigationManager)
+        public LoginViewModel(IMvxNavigationService navigationService)
         {
-            _navigationManager = navigationManager;
+            _navigationService = navigationService;
         }
 
         public  override async void ViewCreated()
@@ -59,7 +60,7 @@ namespace CityMapXamarin.Core.ViewModels
             if (IsCanGetMainPage())
             {
                 SettingsManager.LastLoginTime = DateTime.Now;
-                await  _navigationManager.NavigateMainPageAsync();
+                await _navigationService.Navigate<MainPageViewModel>();
             }
 
         }
@@ -69,7 +70,7 @@ namespace CityMapXamarin.Core.ViewModels
             if (IsCorrectLoginAndPassword())
             {
                 SettingsManager.LastLoginTime = DateTime.Now;
-                await _navigationManager.NavigateMainPageAsync();
+                await _navigationService.Navigate<MainPageViewModel>();
 
             }
             else
