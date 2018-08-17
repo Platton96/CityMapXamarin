@@ -34,8 +34,7 @@ namespace CityMapXamarin.Droid.Views
             _chart = FindViewById<ChartView>(Resource.Id.radial_chart_view);
             var entry1 = new Entry(82)
             {
-                Color = SKColor.Parse("#90D585"),
-
+                Color = SKColors.Red,
             };
             var entry2 = new Entry(44)
             {
@@ -43,12 +42,12 @@ namespace CityMapXamarin.Droid.Views
                 ValueLabel = "10",
                 Label = "qweqweewqe",
             };
-            var chart = new MyRadialGaugeChart()
+            var chart = new MyRadialGaugeChart(entry1)
             {
-                Entries = new Entry[] { entry1},
                 LabelTextSize = 40,
-                LineSize = 100,
-                MaxValue = 100
+                LineSize = 30,
+                MaxValue = 100,
+                LineAreaAlpha=10
 
             };
 

@@ -49,36 +49,6 @@ namespace CityMapXamarin.Droid.Views
             return entries;
         }
 
-        private SKPoint[] GetPoints()
-        {
-            var entries = new[]
-            {
-                new SKPoint()
-                {
-                    X=142.5f,
-                    Y=265f
-                },
-                new SKPoint()
-                {
-                    X=407.5f,
-                    Y=166f
-                },
-                new SKPoint()
-                {
-                    X=672.5f,
-                    Y=640f
-                },
-                new SKPoint()
-                {
-                    X=937.5f,
-                    Y=340f
-                }
-
-             };
-
-
-            return entries;
-        }
         private Entry[] GetEntries2()
         {
             var entries = new[]
@@ -86,22 +56,22 @@ namespace CityMapXamarin.Droid.Views
                 new Entry(123)
                 {
                     Label = "8/12",
-                    Color=SKColor.Parse("#266489")
+                    Color=SKColors.CadetBlue
                 },
                 new Entry(268)
                 {
                     Label = "8/11",
-                    Color = SKColor.Parse("#266489")
+                    Color = SKColors.CadetBlue
                 },
                 new Entry(300)
                 {
                     Label = "5/4",
-                    Color = SKColor.Parse("#266489")
+                    Color = SKColors.CadetBlue
                 },
                  new Entry(176)
                 {
                     Label = "3/4",
-                    Color = SKColor.Parse("#266489")
+                    Color = SKColors.CadetBlue
                 }
              };
             return entries;

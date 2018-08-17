@@ -7,22 +7,22 @@
 	<LinearLayout android:orientation="horizontal"
 		    android:layout_width="wrap_content"
 			android:layout_height="wrap_content">
-		<Button
+			<Button
 			android:id="@+id/btn_main_map"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:text="Map" />
-		<Button
-		android:id="@+id/btn_chart"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="LinerChart" />
-		<Button
-		android:id="@+id/btn_radial_chart"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="RadialChart" />
-    </LinearLayout>
+			<Button
+			android:id="@+id/btn_chart"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="LinerChart" />
+			<Button
+			android:id="@+id/btn_radial_chart"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="RadialChart" />
+	</LinearLayout>
     <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
         android:id="@+id/cities_list"
         android:layout_width="match_parent"
