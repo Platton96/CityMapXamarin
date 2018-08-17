@@ -2,7 +2,7 @@
 
 namespace CityMapXamarin.Core.ViewModels
 {
-    public class MicrochartViewModel : MvxViewModel
+    public class LineChartViewModel : MvxViewModel
     {
 
     }

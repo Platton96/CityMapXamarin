@@ -54,7 +54,7 @@ namespace CityMapXamarin.Core.ViewModels
         }
         private async Task DoNavigateToMicrochartAsync()
         {
-            await _navigationService.Navigate<MicrochartViewModel>();
+            await _navigationService.Navigate<LineChartViewModel>();
         }
         private async Task DoNavigateToRadialChartAsync()
         {

@@ -68,7 +68,7 @@
     <Compile Include="Views\CityView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\MainPageView.cs" />
-    <Compile Include="Views\MicrochartView.cs" />
+    <Compile Include="Views\LineChartView.cs" />
     <Compile Include="Views\RadialGaugeChartView.cs" />
     <Compile Include="Views\ViewHolders\CityValueViewHolder.cs" />
   </ItemGroup>
@@ -154,7 +154,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MicrochartPage.axml">
+    <AndroidResource Include="Resources\layout\LineChartPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
