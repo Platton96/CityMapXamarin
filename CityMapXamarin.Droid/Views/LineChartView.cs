@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.OS;
-using CityMapXamarin.Core.Charts;
 using CityMapXamarin.Core.ViewModels;
 using Microcharts;
 using Microcharts.Droid;
@@ -97,10 +96,6 @@ namespace CityMapXamarin.Droid.Views
                 BackgroundColor = SKColors.Transparent,
                 LineSize=8
             };
-
-
-            //chart.MyDrawLine(points2, itemSize2);
-            //chart.MyDrawLine(points3, itemSize3);
             _chart.Chart = chart;
             _chart2.Chart = chart2;
         }
