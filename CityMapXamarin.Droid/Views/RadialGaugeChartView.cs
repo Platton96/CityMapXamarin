@@ -6,6 +6,7 @@ using CityMapXamarin.Core.ViewModels;
 using Microcharts;
 using Microcharts.Droid;
 using MvvmCross.Platforms.Android.Views;
+using SkiaSharp;
 
 namespace CityMapXamarin.Droid.Views
 {
@@ -25,12 +26,9 @@ namespace CityMapXamarin.Droid.Views
             _chart = FindViewById<ChartView>(Resource.Id.radial_chart_view);
             var entry1 = new Entry(82);
 
-            var chart = new MyRadialGaugeChart(entry1)
+            var chart = new GaugeChart(50, GaugeChartTypes.SectorGaugeChartWhithArrow)
             {
-                LabelTextSize = 40,
-                LineSize = 30,
-                MaxValue = 100,
-                LineAreaAlpha=30
+                BackgroundColor=SKColors.Transparent
             };
 
             _chart.Chart = chart;

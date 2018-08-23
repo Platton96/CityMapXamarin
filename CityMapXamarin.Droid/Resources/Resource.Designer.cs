@@ -6945,14 +6945,14 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f0b006d
 			public const int list_item = 2131427437;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int masked = 2131427533;
+			// aapt resource value: 0x7f0b00cc
+			public const int masked = 2131427532;
 			
 			// aapt resource value: 0x7f0b00bc
 			public const int media_actions = 2131427516;
 			
-			// aapt resource value: 0x7f0b00cb
-			public const int message = 2131427531;
+			// aapt resource value: 0x7f0b00ca
+			public const int message = 2131427530;
 			
 			// aapt resource value: 0x7f0b003e
 			public const int middle = 2131427390;
@@ -7164,9 +7164,6 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f0b00ab
 			public const int text_input_password_toggle = 2131427499;
 			
-			// aapt resource value: 0x7f0b00ca
-			public const int text_label = 2131427530;
-			
 			// aapt resource value: 0x7f0b00ae
 			public const int text_view_error_message = 2131427502;
 			
@@ -7224,8 +7221,8 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f0b0016
 			public const int view_offset_helper = 2131427350;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int visible = 2131427532;
+			// aapt resource value: 0x7f0b00cb
+			public const int visible = 2131427531;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int wide = 2131427368;
