@@ -8,6 +8,8 @@ namespace CityMapXamarin.Core.Charts
     {
         private float _score;
         private GaugeChartTypes _gaugeChartType;
+        private string _scoreTitle;
+        private string _statisticDate;
 
         private Entry _entry;
         private SKCanvas _canvas;
@@ -19,47 +21,68 @@ namespace CityMapXamarin.Core.Charts
         private const float MAX_VALUE_SCORE = 100;
         private const float SECTOR_GUAGE_CHART_WITH_ARROW_LINE_WIDTH = 60;
 
+        private const float BEGIN_ANGLE = 60f;
+
         private const int START_ANGLE = 150;
         private const int SWEEP_ANGLE = 240;
         private const float COEFF_FOR_CALCULATE_SWEEP_ANGLE = 2.4f; //240/100
         public GaugeChart(float score, GaugeChartTypes gaugeChartType)
         {
-            if (score < MIN_VALUE_SCORE && score > MAX_VALUE_SCORE)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+            CheakValidationScoreValue(score);
             _score = score;
             _gaugeChartType = gaugeChartType;
+        }
+        public GaugeChart(float score, GaugeChartTypes gaugeChartType, string statisticDate)
+        {
+            CheakValidationScoreValue(score);
+            _score = score;
+            _gaugeChartType = gaugeChartType;
+            _statisticDate = statisticDate;
+
+        }
+        public GaugeChart(float score, GaugeChartTypes gaugeChartType, string statisticDate, string scoreTitle)
+        {
+            CheakValidationScoreValue(score);
+            _score = score;
+            _gaugeChartType = gaugeChartType;
+            _statisticDate = statisticDate;
+            _scoreTitle = scoreTitle;
         }
         public override void DrawContent(SKCanvas canvas, int width, int height)
         {
             _canvas = canvas;
-            var radius = (Math.Min(width, height) - (4 * Margin)) / 2;
+            var radius = Math.Min(width, height) * 0.4f;
             _radius = radius;
             var cx = width / 2f;
             var cy = height / 2f;
             _cy = cy;
             _cx = cx;
             //  DrawSmallSpeedometer(radius - 40, cx, cy, START_AGILE, _entry.Value * COEFF_FOR_CALCULATE_END_AGILE, 20);
-            DrawSectorGuageChartWithArrow(radius - 40, cx, cy, START_ANGLE, _score * COEFF_FOR_CALCULATE_SWEEP_ANGLE, SECTOR_GUAGE_CHART_WITH_ARROW_LINE_WIDTH);
+            // DrawSectorGuageChartWithArrow(radius - 40, cx, cy, START_ANGLE, _score * COEFF_FOR_CALCULATE_SWEEP_ANGLE, SECTOR_GUAGE_CHART_WITH_ARROW_LINE_WIDTH,_scoreTitle,_statisticDate);
+
+            //var lineTickeness = radius / 8;
+            //DrawGradientGuageChartWithoutArrow(radius, cx, cy, START_ANGLE, _score, lineTickeness, _statisticDate);
+
+            var lineTickeness = radius *0.22f;
+            DrawGradientGuageChartWithSmallCircle(radius, cx, cy, START_ANGLE, _score, lineTickeness, _scoreTitle, _statisticDate);
         }
 
-       
+
         public void DrawSmallSpeedometer(float radius, int cx, int cy, float startAgile, float sweepAgile, float stokeWidth)
         {
-            var shader = ItializeShader(cx, cy, 145);
+            var shader = InitializeShader(cx, cy, 145);
             var paintFrontLine = InitializePaint(stokeWidth, shader);
             //   var paintBackLine = InitializePaint(stokeWidth, SKColors.Gray.WithAlpha(this.LineAreaAlpha));
             DrawArc(paintFrontLine, radius, cx, cy, startAgile, SWEEP_ANGLE);
             //  DrawArc(paintBackLine, radius, cx, cy, startAgile, END_AGILE);
 
         }
-        public void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float sweepAngle, float stokeWidth)
+        public void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float sweepAngle, float lineThickness, string scoreTitle, string statisticDate)
         {
 
-            var paintFrontLine1 = InitializePaint(stokeWidth, new SKColor(0, 107, 166));
-            var paintFrontLine2 = InitializePaint(stokeWidth, new SKColor(0, 169, 224));
-            var paintFrontLine3 = InitializePaint(stokeWidth, new SKColor(225, 242, 247));
+            var paintFrontLine1 = InitializePaint(lineThickness, new SKColor(0, 107, 166));
+            var paintFrontLine2 = InitializePaint(lineThickness, new SKColor(0, 169, 224));
+            var paintFrontLine3 = InitializePaint(lineThickness, new SKColor(225, 242, 247));
             //   var paintBackLine = InitializePaint(stokeWidth, SKColors.Gray.WithAlpha(this.LineAreaAlpha));
 
 
@@ -72,9 +95,63 @@ namespace CityMapXamarin.Core.Charts
             DrawLine(_score, 8, SKColors.Black, 20, 80);
 
             DrawLabel(cx, cy, _score.ToString(), 240, new SKColor(4, 33, 54));
-            DrawLabel(cx, cy+120,"Score for the week ending", 28, new SKColor(171, 185, 192));
-            DrawLabel(cx, cy + 180, "September 9", 34, new SKColor(54, 85, 101));
+            DrawLabel(cx, cy + 120, scoreTitle, 28, new SKColor(171, 185, 192));
+            DrawLabel(cx, cy + 180, statisticDate, 34, new SKColor(54, 85, 101));
             //  DrawArc(paintBackLine, radius, cx, cy, startAgile, END_AGILE);
+
+        }
+
+        public void DrawGradientGuageChartWithoutArrow(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string statisticDate = "")
+        {
+            var backgroundLineColor = new SKColor(241, 241, 241);
+            var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
+            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, SWEEP_ANGLE);
+
+            var gradientRotateAngle = 145f;
+            var gradient = InitializeShader(cx, cy, gradientRotateAngle);
+            var gradientLinePaint = InitializePaint(lineThickness, gradient);
+            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * COEFF_FOR_CALCULATE_SWEEP_ANGLE);
+
+            var scoreColor = new SKColor(0, 24, 47);
+            var scoreValueLabelSize = radius / 2;
+            DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
+
+            if (!string.IsNullOrEmpty(statisticDate))
+            {
+                var statisticDateLabelColor = new SKColor(180, 193, 199);
+                var statisticDateLabelSize = radius / 4;
+                var statisticDateLabelY = cy + radius / 2;
+                DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
+            }
+
+        }
+
+        public void DrawGradientGuageChartWithSmallCircle(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string scoreTitle, string statisticDate)
+        {
+            var backgroundLineColor = new SKColor(241, 241, 241);
+            var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
+            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, SWEEP_ANGLE);
+
+            var gradientRotateAngle = 145f;
+            var gradient = InitializeShader(cx, cy, gradientRotateAngle);
+            var gradientLinePaint = InitializePaint(lineThickness, gradient);
+            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * COEFF_FOR_CALCULATE_SWEEP_ANGLE);
+
+            var scoreColor = new SKColor(0, 24, 47);
+            var scoreValueLabelSize = 0.41f * radius;
+            DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
+
+            var scoreTitleLabelColor = new SKColor(180, 193, 199);
+            var scoreTitleLabelSize = 0.1f*radius;
+            var scoreTitleLabelY = cy + 0.37f*radius ;
+            DrawLabel(cx, scoreTitleLabelY, scoreTitle, scoreTitleLabelSize, scoreTitleLabelColor);
+
+            var statisticDateLabelColor = new SKColor(0, 24, 47);
+            var statisticDateLabelSize = 0.1f*radius+2;
+            var statisticDateLabelY = cy + 0.54f*radius ;
+            DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
+
+            DrawCircle(radius, cx, cy);
 
         }
         private SKPaint InitializePaint(float stokeWidth, SKColor color)
@@ -107,18 +184,22 @@ namespace CityMapXamarin.Core.Charts
                 _canvas.DrawPath(path, paint);
             }
         }
-        private SKShader ItializeShader(float cx, float cy, float agileRotate)
+        private SKShader InitializeShader(float cx, float cy, float agileRotate)
         {
-            var colors = new[] { new SKColor(0, 107, 166), new SKColor(0, 169, 224), new SKColor(244, 244, 244) };
+            var startColor = new SKColor(24, 109, 167);
+            var endColor = new SKColor(255, 255, 255);
+            var colors = new[] { startColor, endColor };
+            //var colors2 = new[] { new SKColor(0, 107, 166), new SKColor(0, 169, 224), new SKColor(244, 244, 244) };
+            var positions = new[] { 0.1f, 0.9f };
             var center = new SKPoint(cx, cy);
             SKMatrix matrix = new SKMatrix();
             SKMatrix.RotateDegrees(ref matrix, agileRotate, cx, cy);
 
-            return SKShader.CreateSweepGradient(center, colors, new float[] { 0.3f, 0.5f, 0.6f }, matrix);
+            return SKShader.CreateSweepGradient(center, colors, null, matrix);
         }
         private void DrawLine(float _ballsCount, float lineWidth, SKColor lineColor, float upIndentFromCircle, float downIndentFromCircle)
         {
-            const float BEGIN_ANGLE = 60f;
+
             var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _ballsCount + BEGIN_ANGLE;
             var x1 = _cx - (_radius - downIndentFromCircle) * (float)Math.Sin(angle * (Math.PI / 180f));
             var y1 = _cy + (_radius - downIndentFromCircle) * (float)Math.Cos(angle * (Math.PI / 180f));
@@ -151,6 +232,29 @@ namespace CityMapXamarin.Core.Charts
             };
             _canvas.DrawText(text, x, y, paint);
 
+        }
+        public void DrawCircle(float radius, float cx, float cy)
+        {
+            var paint = new SKPaint
+            {
+                Style = SKPaintStyle.Stroke,
+                StrokeWidth = 0.03f * radius+7,
+                Color = SKColors.White,
+                IsAntialias = true,
+            };
+            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + BEGIN_ANGLE - 5;
+            float smallCirceleCenterX = _cx - (  radius * (float)Math.Sin(angle * (Math.PI / 180f)));
+            var smallCirceleCenterY = cy + (radius * (float)Math.Cos(angle * (Math.PI / 180f)));
+
+            _canvas.DrawCircle(smallCirceleCenterX, smallCirceleCenterY, 0.11f * radius, paint);
+
+        }
+        private void CheakValidationScoreValue(float value)
+        {
+            if (value < MIN_VALUE_SCORE && value > MAX_VALUE_SCORE)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
