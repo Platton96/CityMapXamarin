@@ -11,7 +11,6 @@ namespace CityMapXamarin.Core.Charts
         private string _scoreTitle;
         private string _statisticDate;
 
-        private Entry _entry;
         private SKCanvas _canvas;
         private float _cx;
         private float _cy;
@@ -59,13 +58,14 @@ namespace CityMapXamarin.Core.Charts
             _cy = cy;
             _cx = cx;
             //  DrawSmallSpeedometer(radius - 40, cx, cy, START_AGILE, _entry.Value * COEFF_FOR_CALCULATE_END_AGILE, 20);
-            // DrawSectorGuageChartWithArrow(radius - 40, cx, cy, START_ANGLE, _score * COEFF_FOR_CALCULATE_SWEEP_ANGLE, SECTOR_GUAGE_CHART_WITH_ARROW_LINE_WIDTH,_scoreTitle,_statisticDate);
+            var lineTickeness = radius * 0.22f;
+            DrawSectorGuageChartWithArrow(radius, cx, cy, START_ANGLE, lineTickeness, _scoreTitle, _statisticDate);
 
             //var lineTickeness = radius / 8;
             //DrawGradientGuageChartWithoutArrow(radius, cx, cy, START_ANGLE, _score, lineTickeness, _statisticDate);
 
-            var lineTickeness = radius * 0.22f;
-            DrawGradientGuageChartWithSmallCircle(radius, cx, cy, START_ANGLE, _score, lineTickeness, _scoreTitle, _statisticDate);
+            //var lineTickeness = radius * 0.22f;
+            //DrawGradientGuageChartWithSmallCircle(radius, cx, cy, START_ANGLE, _score, lineTickeness, _scoreTitle, _statisticDate);
         }
 
 
@@ -78,27 +78,65 @@ namespace CityMapXamarin.Core.Charts
             //  DrawArc(paintBackLine, radius, cx, cy, startAgile, END_AGILE);
 
         }
-        public void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float sweepAngle, float lineThickness, string scoreTitle, string statisticDate)
+        public void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float lineThickness, string scoreTitle, string statisticDate)
         {
+            var beginSectorColor = new SKColor(0, 107, 166);
+            var midleSectorColor = new SKColor(0, 169, 224);
+            var endSectorColor = new SKColor(225, 242, 247);
 
-            var paintFrontLine1 = InitializePaint(lineThickness, new SKColor(0, 107, 166));
-            var paintFrontLine2 = InitializePaint(lineThickness, new SKColor(0, 169, 224));
-            var paintFrontLine3 = InitializePaint(lineThickness, new SKColor(225, 242, 247));
+            var breakLineColor = SKColors.White;
+            var boldLineColor = new SKColor(5, 36, 57);
+            var thinLineColor = new SKColor(240, 241, 242);
+
+            var beginSectorPaint = InitializePaint(lineThickness, beginSectorColor);
+            var midleSectorPaint = InitializePaint(lineThickness, midleSectorColor);
+            var endSectorPaint = InitializePaint(lineThickness, endSectorColor);
+
+            var beginSectorAngle = 60f;
+            var midleSectorAngle = 180f;
+            var endSectorAngle = 240f;
+
+            var breakLineThickness = 0.09f * radius;
+            var boldLineThickness = breakLineThickness *0.3f;
+            var thinLineThickness = boldLineThickness / 2f;
+
+
+            var upIndentFromCircleForBreakLine = lineThickness/2;
+            var downIndentFromCircleForBreakLine = lineThickness/2+10;
+
+            var upIndentFromCircleForBoldLine = 0.07f * radius+lineThickness / 2; ;
+            var downIndentFromCircleForrBoldLine = lineThickness/2 + 0.07f * radius;
+
+            var upIndentFromCircleForThinLine = 0f;
+            var downIndentFromCircleFoThinLine = 0.33f * radius+ lineThickness / 2;
+
+            var scoreColor = new SKColor(0, 24, 47);
+            var scoreValueLabelSize = 0.41f * radius;
+
+            var scoreTitleLabelColor = new SKColor(180, 193, 199);
+            var scoreTitleLabelSize = 0.1f * radius;
+            var scoreTitleLabelY = cy + 0.37f * radius;
+
+            var statisticDateLabelColor = new SKColor(0, 24, 47);
+            var statisticDateLabelSize = 0.1f * radius + 2;
+            var statisticDateLabelY = cy + 0.54f * radius;
             //   var paintBackLine = InitializePaint(stokeWidth, SKColors.Gray.WithAlpha(this.LineAreaAlpha));
 
 
-            DrawArc(paintFrontLine3, radius, cx, cy, startAngle, 240);
-            DrawArc(paintFrontLine2, radius, cx, cy, startAngle, 180);
-            DrawArc(paintFrontLine1, radius, cx, cy, startAngle, 60);
+            DrawArc(endSectorPaint, radius, cx, cy, startAngle, endSectorAngle);
+            DrawArc(midleSectorPaint, radius, cx, cy, startAngle, midleSectorAngle);
+            DrawArc(beginSectorPaint, radius, cx, cy, startAngle, beginSectorAngle);
 
-            DrawLine(_score, 30, SKColors.White, 0, 80);
-            DrawLine(_score, 4, SKColors.LightGray, -60, 150);
-            DrawLine(_score, 8, SKColors.Black, 20, 80);
+            DrawPaintedCircle(radius, cx, cy, BEGIN_ANGLE, beginSectorColor);
+            DrawPaintedCircle(radius, cx, cy, END_ANGLE, endSectorColor);
 
-            DrawLabel(cx, cy, _score.ToString(), 240, new SKColor(4, 33, 54));
-            DrawLabel(cx, cy + 120, scoreTitle, 28, new SKColor(171, 185, 192));
-            DrawLabel(cx, cy + 180, statisticDate, 34, new SKColor(54, 85, 101));
-            //  DrawArc(paintBackLine, radius, cx, cy, startAgile, END_AGILE);
+            DrawLine(_score, breakLineThickness, breakLineColor, upIndentFromCircleForBreakLine, downIndentFromCircleForBreakLine);
+            DrawLine(_score, thinLineThickness, thinLineColor, upIndentFromCircleForThinLine, downIndentFromCircleFoThinLine);
+            DrawLine(_score, boldLineThickness, boldLineColor, upIndentFromCircleForBoldLine, downIndentFromCircleForrBoldLine);
+
+            DrawLabel(cx, cy, _score.ToString(), scoreValueLabelSize, scoreColor);
+            DrawLabel(cx, scoreTitleLabelY, scoreTitle, scoreTitleLabelSize, scoreTitleLabelColor);
+            DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
 
         }
 
@@ -244,11 +282,11 @@ namespace CityMapXamarin.Core.Charts
             {
                 Style = SKPaintStyle.Stroke,
                 StrokeWidth = 0.05f * radius,
-                Color = new SKColor(255,255,255),
+                Color = new SKColor(255, 255, 255),
                 IsAntialias = true,
             };
 
-            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + BEGIN_ANGLE - 6.5f;
+            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + BEGIN_ANGLE - 6.1f;
 
             var smallCirceleCenterX = cx - (radius * (float)Math.Sin(angle * (Math.PI / 180f)));
             var smallCirceleCenterY = cy + (radius * (float)Math.Cos(angle * (Math.PI / 180f)));
