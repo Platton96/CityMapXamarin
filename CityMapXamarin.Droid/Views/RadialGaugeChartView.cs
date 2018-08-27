@@ -28,7 +28,7 @@ namespace CityMapXamarin.Droid.Views
 
             var chart = new GaugeChart(90, GaugeChartTypes.SectorGaugeChartWhithArrow, "9 September", "Score for the week ending")
             {
-                BackgroundColor=SKColors.Transparent
+                BackgroundColor= new SKColor(255, 255, 255)
             };
 
             _chart.Chart = chart;

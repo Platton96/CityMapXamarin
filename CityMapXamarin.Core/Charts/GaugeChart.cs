@@ -22,6 +22,7 @@ namespace CityMapXamarin.Core.Charts
         private const float SECTOR_GUAGE_CHART_WITH_ARROW_LINE_WIDTH = 60;
 
         private const float BEGIN_ANGLE = 60f;
+        private const float END_ANGLE = 300f;
 
         private const int START_ANGLE = 150;
         private const int SWEEP_ANGLE = 240;
@@ -63,7 +64,7 @@ namespace CityMapXamarin.Core.Charts
             //var lineTickeness = radius / 8;
             //DrawGradientGuageChartWithoutArrow(radius, cx, cy, START_ANGLE, _score, lineTickeness, _statisticDate);
 
-            var lineTickeness = radius *0.22f;
+            var lineTickeness = radius * 0.22f;
             DrawGradientGuageChartWithSmallCircle(radius, cx, cy, START_ANGLE, _score, lineTickeness, _scoreTitle, _statisticDate);
         }
 
@@ -132,7 +133,10 @@ namespace CityMapXamarin.Core.Charts
             var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
             DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, SWEEP_ANGLE);
 
-            var gradientRotateAngle = 145f;
+            var startColor = new SKColor(28, 114, 169);
+            DrawPaintedCircle(radius, cx, cy, BEGIN_ANGLE, startColor);
+
+            var gradientRotateAngle = 140f;
             var gradient = InitializeShader(cx, cy, gradientRotateAngle);
             var gradientLinePaint = InitializePaint(lineThickness, gradient);
             DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * COEFF_FOR_CALCULATE_SWEEP_ANGLE);
@@ -142,15 +146,16 @@ namespace CityMapXamarin.Core.Charts
             DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
 
             var scoreTitleLabelColor = new SKColor(180, 193, 199);
-            var scoreTitleLabelSize = 0.1f*radius;
-            var scoreTitleLabelY = cy + 0.37f*radius ;
+            var scoreTitleLabelSize = 0.1f * radius;
+            var scoreTitleLabelY = cy + 0.37f * radius;
             DrawLabel(cx, scoreTitleLabelY, scoreTitle, scoreTitleLabelSize, scoreTitleLabelColor);
 
             var statisticDateLabelColor = new SKColor(0, 24, 47);
-            var statisticDateLabelSize = 0.1f*radius+2;
-            var statisticDateLabelY = cy + 0.54f*radius ;
+            var statisticDateLabelSize = 0.1f * radius + 2;
+            var statisticDateLabelY = cy + 0.54f * radius;
             DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
 
+            DrawPaintedCircle(radius, cx, cy, END_ANGLE, backgroundLineColor);
             DrawCircle(radius, cx, cy);
 
         }
@@ -238,16 +243,45 @@ namespace CityMapXamarin.Core.Charts
             var paint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
-                StrokeWidth = 0.03f * radius+7,
-                Color = SKColors.White,
+                StrokeWidth = 0.05f * radius,
+                Color = new SKColor(255,255,255),
                 IsAntialias = true,
             };
-            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + BEGIN_ANGLE - 5;
-            float smallCirceleCenterX = _cx - (  radius * (float)Math.Sin(angle * (Math.PI / 180f)));
+
+            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + BEGIN_ANGLE - 6.5f;
+
+            var smallCirceleCenterX = cx - (radius * (float)Math.Sin(angle * (Math.PI / 180f)));
             var smallCirceleCenterY = cy + (radius * (float)Math.Cos(angle * (Math.PI / 180f)));
 
-            _canvas.DrawCircle(smallCirceleCenterX, smallCirceleCenterY, 0.11f * radius, paint);
+            var radiusSmallCircle = 0.132f * radius;
 
+            _canvas.DrawCircle(smallCirceleCenterX, smallCirceleCenterY, radiusSmallCircle, paint);
+
+        }
+        private void DrawPaintedCircle(float radius, float cx, float cy, float angleDegrees, SKColor paintedColor)
+        {
+            var paint = new SKPaint
+            {
+                Style = SKPaintStyle.Stroke,
+                StrokeWidth = 1f,
+                IsStroke = false,
+                Color = paintedColor,
+                IsAntialias = true,
+            };
+            var smallCirceleCenterX = CalculateCoordinateXPointOnCircle(radius, angleDegrees, cx);
+            var smallCirceleCenterY = CalculateCoordinateYPointOnCircle(radius, angleDegrees, cy);
+
+            var radiusSmallCircle = 0.11f * radius;
+
+            _canvas.DrawCircle(smallCirceleCenterX, smallCirceleCenterY, radiusSmallCircle, paint);
+        }
+        private float CalculateCoordinateXPointOnCircle(float radius, float angleDegrees, float centerX)
+        {
+            return centerX - (radius * (float)Math.Sin(angleDegrees * (Math.PI / 180f)));
+        }
+        private float CalculateCoordinateYPointOnCircle(float radius, float angleDegrees, float centerY)
+        {
+            return centerY + (radius * (float)Math.Cos(angleDegrees * (Math.PI / 180f)));
         }
         private void CheakValidationScoreValue(float value)
         {
