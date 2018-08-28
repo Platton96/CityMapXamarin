@@ -69,7 +69,7 @@ namespace CityMapXamarin.Core.Charts
 
         }
 
-        public void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float lineThickness, string scoreTitle, string statisticDate)
+        private void DrawSectorGuageChartWithArrow(float radius, float cx, float cy, float startAngle, float lineThickness, string scoreTitle, string statisticDate)
         {
             var beginSectorColor = new SKColor(0, 107, 166);
             var midleSectorColor = new SKColor(0, 169, 224);
@@ -129,7 +129,7 @@ namespace CityMapXamarin.Core.Charts
 
         }
 
-        public void DrawGradientGuageChartWithoutArrow(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string statisticDate = "")
+        private void DrawGradientGuageChartWithoutArrow(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string statisticDate = "")
         {
             var backgroundLineColor = new SKColor(241, 241, 241);
             var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
@@ -153,10 +153,9 @@ namespace CityMapXamarin.Core.Charts
 
                 DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
             }
-
         }
 
-        public void DrawGradientGuageChartWithSmallCircle(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string scoreTitle, string statisticDate)
+        private void DrawGradientGuageChartWithSmallCircle(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string scoreTitle, string statisticDate)
         {
             var backgroundLineColor = new SKColor(241, 241, 241);
             var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
