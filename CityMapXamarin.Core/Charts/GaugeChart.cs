@@ -91,25 +91,24 @@ namespace CityMapXamarin.Core.Charts
             var boldLineThickness = breakLineThickness * 0.3f;
             var thinLineThickness = boldLineThickness / 2f;
 
-
             var upIndentFromCircleForBreakLine = lineThickness / 2;
             var downIndentFromCircleForBreakLine = lineThickness / 2 + 10;
 
             var upIndentFromCircleForBoldLine = 0.07f * radius + lineThickness / 2; ;
             var downIndentFromCircleForrBoldLine = lineThickness / 2 + 0.07f * radius;
 
-            var upIndentFromCircleForThinLine = 0f;
+            var upIndentFromCircleForThinLine =0f;
             var downIndentFromCircleFoThinLine = 0.33f * radius + lineThickness / 2;
 
             var scoreColor = new SKColor(0, 24, 47);
-            var scoreValueLabelSize = 0.41f * radius;
+            var scoreValueLabelSize = 0.51f * radius;
 
             var scoreTitleLabelColor = new SKColor(180, 193, 199);
-            var scoreTitleLabelSize = 0.1f * radius;
+            var scoreTitleLabelSize = 0.12f * radius;
             var scoreTitleLabelY = cy + 0.37f * radius;
 
             var statisticDateLabelColor = new SKColor(0, 24, 47);
-            var statisticDateLabelSize = 0.1f * radius + 2;
+            var statisticDateLabelSize = 0.12f * radius + 2;
             var statisticDateLabelY = cy + 0.54f * radius;
 
             DrawArc(endSectorPaint, radius, cx, cy, startAngle, endSectorAngle);
@@ -203,8 +202,8 @@ namespace CityMapXamarin.Core.Charts
             var x1 = CalculateCoordinateXPointOnCircle(radius - downIndentFromCircle, angle, cx);
             var y1 = CalculateCoordinateYPointOnCircle(radius - downIndentFromCircle, angle, cy);
 
-            var x2 = CalculateCoordinateXPointOnCircle(radius + downIndentFromCircle, angle, cx);
-            var y2 = CalculateCoordinateYPointOnCircle(radius + downIndentFromCircle, angle, cy);
+            var x2 = CalculateCoordinateXPointOnCircle(radius + upIndentFromCircle, angle, cx);
+            var y2 = CalculateCoordinateYPointOnCircle(radius + upIndentFromCircle, angle, cy);
 
             var paint = new SKPaint
             {

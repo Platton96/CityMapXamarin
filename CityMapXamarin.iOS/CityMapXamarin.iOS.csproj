@@ -72,6 +72,7 @@
     <Compile Include="Views\CityView.cs" />
     <Compile Include="Views\CollectionSource\CitiesCollectionSource.cs" />
     <Compile Include="Views\MainPageView.cs" />
+    <Compile Include="Views\RadialChartView.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />

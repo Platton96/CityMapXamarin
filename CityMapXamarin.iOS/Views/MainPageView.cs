@@ -10,6 +10,7 @@ namespace Blank.Views
     public class MainPageView : MvxViewController<MainPageViewModel>
     {
         private UIButton _mapButton;
+        private UIButton _radialChartButton;
         private UIView _mainView;
         private UICollectionView _collectionView;
         private CitiesCollectionSource _citiesCollectionSource;
@@ -26,6 +27,7 @@ namespace Blank.Views
             _mainView.BackgroundColor = UIColor.White;
             View.AddSubview(_mainView);
             InitMapButton();
+            InitRadailChartButton();
             InitCollectionView();
 
         }
@@ -35,8 +37,15 @@ namespace Blank.Views
             _mapButton = new UIButton(new CGRect(0, 80, 120, 60));
             _mapButton.BackgroundColor = UIColor.Gray;
             _mapButton.SetTitle("Map",UIControlState.Normal);
-            _mapButton.TitleLabel.Text = "Map";
             _mainView.AddSubview(_mapButton);
+        }
+
+        private void InitRadailChartButton()
+        {
+            _radialChartButton = new UIButton(new CGRect(140, 80, 120, 60));
+            _radialChartButton.BackgroundColor = UIColor.Gray;
+            _radialChartButton.SetTitle("Radial", UIControlState.Normal);
+            _mainView.AddSubview(_radialChartButton);
         }
 
         private void InitCollectionView()
@@ -60,6 +69,7 @@ namespace Blank.Views
         {
             var bindingSet = this.CreateBindingSet<MainPageView, MainPageViewModel>();
             bindingSet.Bind(_mapButton).To(vm => vm.NavigateToCityMapCommand);
+            bindingSet.Bind(_radialChartButton).To(vm => vm.NavigateToRadialCommand);
             bindingSet.Bind(_citiesCollectionSource).For(b => b.ItemsSource).To(vm => vm.Cities);
             bindingSet.Bind(_citiesCollectionSource).For(b => b.SelectionChangedCommand).To(vm => vm.NavigateToCityCommand);
             bindingSet.Apply();
