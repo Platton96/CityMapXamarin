@@ -1,6 +1,8 @@
 ﻿using Microcharts;
 using SkiaSharp;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CityMapXamarin.Core.Charts
 {
@@ -10,18 +12,83 @@ namespace CityMapXamarin.Core.Charts
         private GaugeChartTypes _gaugeChartType;
         private string _scoreTitle;
         private string _statisticDate;
+        private static class GuageChartDefines
+        {
+            public const float MIN_VALUE_SCORE = 0;
+            public const float MAX_VALUE_SCORE = 100;
 
+            public const float START_ARC_POINT_ANGLE = 60;
+            public const float END_ARC_POINT_ANGLE = 300;
+
+            public const float START_ARC_ANGLE = 150;
+            public const float SWEEP_ARC_ANGLE = 240;
+
+            public const float COEFF_FOR_CALCULATE_SWEEP_ANGLE = SWEEP_ARC_ANGLE / MAX_VALUE_SCORE;
+            public const float COEF_FOR_CALCULATE_RADIUS = 0.4f;
+
+            public static class SectorGaugeChart
+            {
+                public const float BEGIN_SECTOR_SWEEP_ANGLE = 60;
+                public const float MIDLE_SECTOR_SWEEP_ANGLE = 180;
+                public const float END_SECTOR_SWEEP_ANGLE = 240;
+
+                public static class CoefForCalculate
+                {
+                    public const float ARC_LINE_THICKNESS = 0.22f;
+
+                    public const float BREAK_LINE_THICKNESS = 0.09f;
+                    public const float BOLD_LINE_THICKNESS = 0.3f;
+                    public const float THIN_LINE_THICKNESS = 0.5f;
+
+                    public const float UP_INDENT_FROM_CIRCLE_FOR_BREAK_LINE = 0.5f;
+                    public const float DOWN_INDENT_FROM_CIRCLE_FOR_BREAK_LINE = 0.6f;
+
+                    public const float UP_INDENT_FROM_CIRCLE_FOR_BOLD_LINE = 0.07f;
+                    public const float DOWN_INDENT_FROM_CIRCLE_FOR_BOLD_LINE = 0.07f;
+
+                    public const float DOWN_INDENT_FROM_CIRCLE_FOR_LINE_THICKNESS = 0.33f;
+
+                    public const float SCORE_VALUE_LABEL_SIZE = 0.51f;
+                    public const float SCORE_TITLE_LABEL_SIZE = 0.12f;
+                    public const float STATISTIC_DATE_LABEL_SIZE = 2;
+
+                    public const float SCORE_TITLE_LABEL_Y = 0.37f;
+                    public const float STATISTIC_DATE_LABEL_Y = 0.54f;
+                }
+            }
+
+            public static class GradientGaugeChartWhithArrow
+            {
+                public const float GRADIENT_ROTATE_ANGLE = 140;
+                public static class CoefForCalculate
+                {
+                    public const float ARC_LINE_THICKNESS = 0.22f;
+
+                    public const float SCORE_VALUE_LABEL_SIZE = 0.51f;
+                    public const float SCORE_TITLE_LABEL_SIZE = 0.12f;
+                    public const float STATISTIC_DATE_LABEL_SIZE = 2;
+
+                    public const float SCORE_TITLE_LABEL_Y = 0.37f;
+                    public const float STATISTIC_DATE_LABEL_Y = 0.54f;
+                }
+            }
+            public static class GradientGaugeChartWhithoutArrow
+            {
+                public const float GRADIENT_ROTATE_ANGLE = 145;
+                public static class CoefForCalculate
+                {
+                    public const float ARC_LINE_THICKNESS = 0.22f;
+
+                    public const float SCORE_VALUE_LABEL_SIZE = 0.63f;
+                    public const float STATISTIC_DATE_LABEL_SIZE = 0.31f;
+
+                    public const float STATISTIC_DATE_LABEL_Y = 0.5f;
+                }
+            }
+
+        }
         private SKCanvas _canvas;
 
-        private const float MIN_VALUE_SCORE = 0;
-        private const float MAX_VALUE_SCORE = 100;
-
-        private const float START_ARC_POINT_ANGLE = 60;
-        private const float END_ARC_POINT_ANGLE = 300;
-
-        private const int START_ARC_ANGLE = 150;
-        private const int SWEEP_ARC_ANGLE = 240;
-        private const float COEFF_FOR_CALCULATE_SWEEP_ANGLE = 2.4f; //240/100
         public GaugeChart(float score, GaugeChartTypes gaugeChartType)
         {
             CheakValidationScoreValue(score);
@@ -47,24 +114,24 @@ namespace CityMapXamarin.Core.Charts
         public override void DrawContent(SKCanvas canvas, int width, int height)
         {
             _canvas = canvas;
-            var radius = Math.Min(width, height) * 0.4f;
+            var radius = Math.Min(width, height) * GuageChartDefines.COEF_FOR_CALCULATE_RADIUS;
             var cx = width / 2f;
             var cy = height / 2f;
 
             if (_gaugeChartType == GaugeChartTypes.SectorGaugeChartWhithArrow)
             {
-                var lineThickness = radius * 0.22f;
-                DrawSectorGuageChartWithArrow(radius, cx, cy, START_ARC_ANGLE, lineThickness, _scoreTitle, _statisticDate);
+                var lineThickness = radius * GuageChartDefines.SectorGaugeChart.CoefForCalculate.ARC_LINE_THICKNESS;
+                DrawSectorGuageChartWithArrow(radius, cx, cy, GuageChartDefines.START_ARC_ANGLE, lineThickness, _scoreTitle, _statisticDate);
             }
             else if (_gaugeChartType == GaugeChartTypes.GradientGaugeChartWhithoutArrow)
             {
                 var lineThickness = radius / 8;
-                DrawGradientGuageChartWithoutArrow(radius, cx, cy, START_ARC_ANGLE, _score, lineThickness, _statisticDate);
+                DrawGradientGuageChartWithoutArrow(radius, cx, cy, GuageChartDefines.START_ARC_ANGLE, _score, lineThickness, _statisticDate);
             }
             else if (_gaugeChartType == GaugeChartTypes.GradientGaugeChartWhithArrow)
             {
                 var lineThickness = radius * 0.22f;
-                DrawGradientGuageChartWithSmallCircle(radius, cx, cy, START_ARC_ANGLE, _score, lineThickness, _scoreTitle, _statisticDate);
+                DrawGradientGuageChartWithSmallCircle(radius, cx, cy, GuageChartDefines.START_ARC_ANGLE, _score, lineThickness, _scoreTitle, _statisticDate);
             }
 
         }
@@ -79,46 +146,42 @@ namespace CityMapXamarin.Core.Charts
             var boldLineColor = new SKColor(5, 36, 57);
             var thinLineColor = new SKColor(240, 241, 242);
 
+            var scoreColor = new SKColor(0, 24, 47);
+            var scoreTitleLabelColor = new SKColor(180, 193, 199);
+            var statisticDateLabelColor = new SKColor(0, 24, 47);
+
             var beginSectorPaint = InitializePaint(lineThickness, beginSectorColor);
             var midleSectorPaint = InitializePaint(lineThickness, midleSectorColor);
             var endSectorPaint = InitializePaint(lineThickness, endSectorColor);
-
-            var beginSectorAngle = 60f;
-            var midleSectorAngle = 180f;
-            var endSectorAngle = 240f;
 
             var breakLineThickness = 0.09f * radius;
             var boldLineThickness = breakLineThickness * 0.3f;
             var thinLineThickness = boldLineThickness / 2f;
 
             var upIndentFromCircleForBreakLine = lineThickness / 2;
-            var downIndentFromCircleForBreakLine = lineThickness / 2 + 10;
+            var downIndentFromCircleForBreakLine = lineThickness * 0.6f;
 
             var upIndentFromCircleForBoldLine = 0.07f * radius + lineThickness / 2; ;
             var downIndentFromCircleForrBoldLine = lineThickness / 2 + 0.07f * radius;
 
-            var upIndentFromCircleForThinLine =0f;
+            var upIndentFromCircleForThinLine = 0f;
             var downIndentFromCircleFoThinLine = 0.33f * radius + lineThickness / 2;
 
-            var scoreColor = new SKColor(0, 24, 47);
             var scoreValueLabelSize = 0.51f * radius;
-
-            var scoreTitleLabelColor = new SKColor(180, 193, 199);
             var scoreTitleLabelSize = 0.12f * radius;
-            var scoreTitleLabelY = cy + 0.37f * radius;
+            var statisticDateLabelSize = scoreTitleLabelSize + 2;
 
-            var statisticDateLabelColor = new SKColor(0, 24, 47);
-            var statisticDateLabelSize = 0.12f * radius + 2;
+            var scoreTitleLabelY = cy + 0.37f * radius;
             var statisticDateLabelY = cy + 0.54f * radius;
 
-            DrawArc(endSectorPaint, radius, cx, cy, startAngle, endSectorAngle);
-            DrawArc(midleSectorPaint, radius, cx, cy, startAngle, midleSectorAngle);
-            DrawArc(beginSectorPaint, radius, cx, cy, startAngle, beginSectorAngle);
+            DrawArc(endSectorPaint, radius, cx, cy, startAngle, GuageChartDefines.SectorGaugeChart.END_SECTOR_SWEEP_ANGLE);
+            DrawArc(midleSectorPaint, radius, cx, cy, startAngle, GuageChartDefines.SectorGaugeChart.MIDLE_SECTOR_SWEEP_ANGLE);
+            DrawArc(beginSectorPaint, radius, cx, cy, startAngle, GuageChartDefines.SectorGaugeChart.BEGIN_SECTOR_SWEEP_ANGLE);
 
-            DrawPaintedCircleOnSpeedometer(radius, cx, cy, START_ARC_POINT_ANGLE, beginSectorColor);
-            DrawPaintedCircleOnSpeedometer(radius, cx, cy, END_ARC_POINT_ANGLE, endSectorColor);
+            DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.START_ARC_POINT_ANGLE, beginSectorColor);
+            DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.END_ARC_POINT_ANGLE, endSectorColor);
 
-            DrawArrowSpeedometerLine(cx,cy,radius,_score, breakLineThickness, breakLineColor, upIndentFromCircleForBreakLine, downIndentFromCircleForBreakLine);
+            DrawArrowSpeedometerLine(cx, cy, radius, _score, breakLineThickness, breakLineColor, upIndentFromCircleForBreakLine, downIndentFromCircleForBreakLine);
             DrawArrowSpeedometerLine(cx, cy, radius, _score, thinLineThickness, thinLineColor, upIndentFromCircleForThinLine, downIndentFromCircleFoThinLine);
             DrawArrowSpeedometerLine(cx, cy, radius, _score, boldLineThickness, boldLineColor, upIndentFromCircleForBoldLine, downIndentFromCircleForrBoldLine);
 
@@ -134,14 +197,14 @@ namespace CityMapXamarin.Core.Charts
             var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
 
             var gradientRotateAngle = 145f;
-            var gradient = InitializeShader(cx, cy, gradientRotateAngle);
+            var gradient = InitializeShader(cx, cy, gradientRotateAngle,null);
             var gradientLinePaint = InitializePaint(lineThickness, gradient);
 
             var scoreColor = new SKColor(0, 24, 47);
             var scoreValueLabelSize = radius / 2;
 
-            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, SWEEP_ARC_ANGLE);
-            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * COEFF_FOR_CALCULATE_SWEEP_ANGLE);
+            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, GuageChartDefines.SWEEP_ARC_ANGLE);
+            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE);
             DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
 
             if (!string.IsNullOrEmpty(statisticDate))
@@ -157,48 +220,91 @@ namespace CityMapXamarin.Core.Charts
         private void DrawGradientGuageChartWithSmallCircle(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string scoreTitle, string statisticDate)
         {
             var backgroundLineColor = new SKColor(241, 241, 241);
-            var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
 
             var startColor = new SKColor(28, 114, 169);
 
-            var gradientRotateAngle = 140f;
-            var gradient = InitializeShader(cx, cy, gradientRotateAngle);
+            var scoreColor = new SKColor(0, 24, 47);
+            var scoreTitleLabelColor = new SKColor(180, 193, 199);
+            var statisticDateLabelColor = new SKColor(0, 24, 47);
+
+            var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
+
+            var gradientRotateAngle = 145f;
+            var gradientColors = GetGradientColor(score);
+            var gradient = InitializeShader(cx, cy, gradientRotateAngle, gradientColors);
             var gradientLinePaint = InitializePaint(lineThickness, gradient);
 
-            var scoreColor = new SKColor(0, 24, 47);
-            var scoreValueLabelSize = 0.41f * radius;
+            var scoreValueLabelSize = 0.7f * radius;
 
-            var scoreTitleLabelColor = new SKColor(180, 193, 199);
-            var scoreTitleLabelSize = 0.1f * radius;
+            var scoreTitleLabelSize = 0.3f * radius;
             var scoreTitleLabelY = cy + 0.37f * radius;
 
-            var statisticDateLabelColor = new SKColor(0, 24, 47);
-            var statisticDateLabelSize = 0.1f * radius + 2;
+            var statisticDateLabelSize = 0.3f * radius + 2;
             var statisticDateLabelY = cy + 0.54f * radius;
 
-            DrawPaintedCircleOnSpeedometer(radius, cx, cy, START_ARC_POINT_ANGLE, startColor);
-            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, SWEEP_ARC_ANGLE);
-            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * COEFF_FOR_CALCULATE_SWEEP_ANGLE);
+            var scoreAngle = GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE * score + GuageChartDefines.START_ARC_POINT_ANGLE ;
+
+         
+            DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, GuageChartDefines.SWEEP_ARC_ANGLE);
+            DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE);
 
             DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
             DrawLabel(cx, scoreTitleLabelY, scoreTitle, scoreTitleLabelSize, scoreTitleLabelColor);
             DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
-            DrawPaintedCircleOnSpeedometer(radius, cx, cy, END_ARC_POINT_ANGLE, backgroundLineColor);
+            DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.START_ARC_POINT_ANGLE, gradientColors.FirstOrDefault());
+            DrawPaintedCircleOnSpeedometer(radius, cx, cy, scoreAngle, gradientColors.LastOrDefault());
+            DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.END_ARC_POINT_ANGLE, backgroundLineColor);
             DrawCircleOnSpeedometer(radius, cx, cy);
         }
+
+        //private void DrawGradientGuageChartWithSmallCircle2(float radius, float cx, float cy, float startAngle, float score, float lineThickness, string scoreTitle, string statisticDate)
+        //{
+        //    var backgroundLineColor = new SKColor(241, 241, 241);
+
+        //    var startColor = new SKColor(28, 114, 169);
+
+        //    var scoreColor = new SKColor(0, 24, 47);
+        //    var scoreTitleLabelColor = new SKColor(180, 193, 199);
+        //    var statisticDateLabelColor = new SKColor(0, 24, 47);
+
+        //    var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
+
+        //    var gradientRotateAngle = 140f;
+        //    var gradient = InitializeShader(cx, cy, gradientRotateAngle);
+        //    var gradientLinePaint = InitializePaint(lineThickness, gradient);
+
+        //    var scoreValueLabelSize = 0.41f * radius;
+
+        //    var scoreTitleLabelSize = 0.1f * radius;
+        //    var scoreTitleLabelY = cy + 0.37f * radius;
+
+        //    var statisticDateLabelSize = 0.1f * radius + 2;
+        //    var statisticDateLabelY = cy + 0.54f * radius;
+
+        //    DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.START_ARC_POINT_ANGLE, startColor);
+        //    DrawArc(backgroundLinePaint, radius, cx, cy, startAngle, GuageChartDefines.SWEEP_ARC_ANGLE);
+        //    DrawArc(gradientLinePaint, radius, cx, cy, startAngle, score * GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE);
+
+        //    DrawLabel(cx, cy, score.ToString(), scoreValueLabelSize, scoreColor);
+        //    DrawLabel(cx, scoreTitleLabelY, scoreTitle, scoreTitleLabelSize, scoreTitleLabelColor);
+        //    DrawLabel(cx, statisticDateLabelY, statisticDate, statisticDateLabelSize, statisticDateLabelColor);
+        //    DrawPaintedCircleOnSpeedometer(radius, cx, cy, GuageChartDefines.END_ARC_POINT_ANGLE, backgroundLineColor);
+        //    DrawCircleOnSpeedometer(radius, cx, cy);
+        //}
         private void DrawArc(SKPaint paint, float radius, float cx, float cy, float startAngle, float sweepAngle)
         {
             using (SKPath path = new SKPath())
             {
                 path.AddArc(SKRect.Create(cx - radius, cy - radius, 2 * radius, 2 * radius), startAngle, sweepAngle);
                 _canvas.DrawPath(path, paint);
+
             }
         }
 
 
         private void DrawArrowSpeedometerLine(float cx, float cy, float radius, float score, float lineThickness, SKColor lineColor, float upIndentFromCircle, float downIndentFromCircle)
         {
-            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * score + START_ARC_POINT_ANGLE;
+            var angle = GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE * score + GuageChartDefines.START_ARC_POINT_ANGLE;
             var x1 = CalculateCoordinateXPointOnCircle(radius - downIndentFromCircle, angle, cx);
             var y1 = CalculateCoordinateYPointOnCircle(radius - downIndentFromCircle, angle, cy);
 
@@ -234,17 +340,17 @@ namespace CityMapXamarin.Core.Charts
             var paint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
-                StrokeWidth = 0.05f * radius,
+                StrokeWidth = 0.013f * radius,
                 Color = new SKColor(255, 255, 255),
                 IsAntialias = true,
             };
 
-            var angle = COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + START_ARC_POINT_ANGLE - 6.1f;
+            var angle = GuageChartDefines.COEFF_FOR_CALCULATE_SWEEP_ANGLE * _score + GuageChartDefines.START_ARC_POINT_ANGLE;
 
-            var smallCircleCenterX = CalculateCoordinateYPointOnCircle(radius, angle, cx); ;
+            var smallCircleCenterX = CalculateCoordinateXPointOnCircle(radius, angle, cx); ;
             var smallCircleCenterY = CalculateCoordinateYPointOnCircle(radius, angle, cy); ;
 
-            var radiusSmallCircle = 0.132f * radius;
+            var radiusSmallCircle = 0.11f * radius;
 
             _canvas.DrawCircle(smallCircleCenterX, smallCircleCenterY, radiusSmallCircle, paint);
 
@@ -254,7 +360,6 @@ namespace CityMapXamarin.Core.Charts
             var paint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
-                StrokeWidth = 1f,
                 IsStroke = false,
                 Color = paintedColor,
                 IsAntialias = true,
@@ -290,19 +395,43 @@ namespace CityMapXamarin.Core.Charts
             };
             return paint;
         }
-        private SKShader InitializeShader(float cx, float cy, float angleRotate)
+        private SKShader InitializeShader(float cx, float cy, float angleRotate, SKColor[] colors)
         {
-            var startColor = new SKColor(24, 109, 167);
-            var endColor = new SKColor(255, 255, 255);
-            var colors = new[] { startColor, endColor };
             var center = new SKPoint(cx, cy);
 
             SKMatrix matrix = new SKMatrix();
             SKMatrix.RotateDegrees(ref matrix, angleRotate, cx, cy);
-
-            return SKShader.CreateSweepGradient(center, colors, null, matrix);
+            var colPosition = new[] { 0, 0.03f, 0.25f, 0.5f, 0.75f, 1 };
+            return SKShader.CreateSweepGradient(center, colors, colPosition, matrix);
         }
+        private SKColor[] GetGradientColor(float score)
+        {
+            var redColor = SKColor.Parse("#FD462B");
+            var orangeColor = SKColor.Parse("#FFB81C");
+            var yelowColor = SKColor.Parse("#FFEA1C");
+            var greenColor = SKColor.Parse("#00B16A");
 
+            var colors0To24 = new[] { redColor, redColor, redColor, redColor, redColor, redColor };
+            var colors25To49 = new[] { redColor,redColor, orangeColor, orangeColor, orangeColor, orangeColor};
+            var colors50To100 = new[] {yelowColor, yelowColor, greenColor, greenColor, greenColor, greenColor };
+            
+            if (score>=0&&score<25)
+            {
+                return colors0To24;
+            }
+            else if (score >= 25 && score < 50)
+            {
+                return colors25To49;
+            }
+            else if (score >= 50 && score <= 100)
+            {
+                return colors50To100;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
         private float CalculateCoordinateXPointOnCircle(float radius, float angleDegrees, float centerX)
         {
             return centerX - (radius * (float)Math.Sin(angleDegrees * (Math.PI / 180f)));
@@ -313,7 +442,7 @@ namespace CityMapXamarin.Core.Charts
         }
         private void CheakValidationScoreValue(float value)
         {
-            if (value < MIN_VALUE_SCORE && value > MAX_VALUE_SCORE)
+            if (value < GuageChartDefines.MIN_VALUE_SCORE && value > GuageChartDefines.MAX_VALUE_SCORE)
             {
                 throw new ArgumentOutOfRangeException();
             }

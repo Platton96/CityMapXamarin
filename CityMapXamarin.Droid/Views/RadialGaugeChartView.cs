@@ -24,12 +24,11 @@ namespace CityMapXamarin.Droid.Views
         private void InitChart()
         {
             _chart = FindViewById<ChartView>(Resource.Id.radial_chart_view);
-            var entry1 = new Entry(82);
-
-            var chart = new GaugeChart(50, GaugeChartTypes.SectorGaugeChartWhithArrow, "9 September", "Score for the week ending")
+            var chart = new GaugeChart(45, GaugeChartTypes.GradientGaugeChartWhithArrow, "9 September", "Score for the week ending")
             {
                 BackgroundColor= new SKColor(255, 255, 255)
             };
+           
 
             _chart.Chart = chart;
         }
