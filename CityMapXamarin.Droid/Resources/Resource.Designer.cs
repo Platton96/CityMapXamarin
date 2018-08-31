@@ -7005,6 +7005,9 @@ namespace CityMapXamarin.Droid
 			// aapt resource value: 0x7f0b00c9
 			public const int radial_chart_view = 2131427529;
 			
+			// aapt resource value: 0x7f0b00ca
+			public const int radial_small_chart_view = 2131427530;
+			
 			// aapt resource value: 0x7f0b0081
 			public const int radio = 2131427457;
 			
@@ -7163,9 +7166,6 @@ namespace CityMapXamarin.Droid
 			
 			// aapt resource value: 0x7f0b00ab
 			public const int text_input_password_toggle = 2131427499;
-			
-			// aapt resource value: 0x7f0b00ca
-			public const int text_label = 2131427530;
 			
 			// aapt resource value: 0x7f0b00ae
 			public const int text_view_error_message = 2131427502;

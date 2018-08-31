@@ -14,6 +14,7 @@ namespace CityMapXamarin.Droid.Views
     public class RadialGaugeChartView : MvxActivity<RadialGaugeChartViewModel>
     {
         private ChartView _chart;
+        private ChartView _smallChart;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -24,7 +25,8 @@ namespace CityMapXamarin.Droid.Views
         private void InitChart()
         {
             _chart = FindViewById<ChartView>(Resource.Id.radial_chart_view);
-            var chart = new GaugeChart(45, GaugeChartTypes.GradientGaugeChartWhithArrow, "9 September", "Score for the week ending")
+            _smallChart= FindViewById<ChartView>(Resource.Id.radial_small_chart_view);
+            var chart = new GaugeChart(75, GaugeChartTypes.GradientGaugeChartWhithArrow, "9 September", "Score for the week ending")
             {
                 BackgroundColor= new SKColor(255, 255, 255)
             };

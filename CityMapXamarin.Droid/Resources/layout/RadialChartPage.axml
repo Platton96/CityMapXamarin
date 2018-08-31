@@ -5,19 +5,19 @@
     android:layout_height="match_parent"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 		<microcharts.droid.ChartView
 			android:id="@+id/radial_chart_view"
-			android:layout_width="400dp"
-			android:layout_height="400dp"
+			android:layout_width="300dp"
+			android:layout_height="300dp"
 			android:layout_margin="4dp"/>
-		<TextView
-			android:id="@+id/text_label"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="48dp"
-			android:text="82"/>
+		<microcharts.droid.ChartView
+			android:id="@+id/radial_small_chart_view"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_margin="4dp"/>
+
 	</LinearLayout>
 </LinearLayout>
