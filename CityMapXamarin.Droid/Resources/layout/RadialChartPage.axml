@@ -15,9 +15,13 @@
 			android:layout_margin="4dp"/>
 		<microcharts.droid.ChartView
 			android:id="@+id/radial_small_chart_view"
-			android:layout_width="100dp"
-			android:layout_height="100dp"
+			android:layout_width="70dp"
+			android:layout_height="70dp"
 			android:layout_margin="4dp"/>
-
+		<microcharts.droid.ChartView
+			android:id="@+id/sector_radial_chart_view"
+			android:layout_width="270dp"
+			android:layout_height="270dp"
+			android:layout_margin="4dp"/>
 	</LinearLayout>
 </LinearLayout>

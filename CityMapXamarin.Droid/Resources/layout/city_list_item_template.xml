@@ -16,10 +16,15 @@
       android:layout_height="wrap_content"
       android:padding="16dp"
       android:textAppearance="?android:attr/textAppearanceLarge" />
-  <Button
+  <!--<Button
     android:id="@+id/btn_map"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:text="in map" />
+    android:text="in map" />-->
+  <microcharts.droid.ChartView
+    android:id="@+id/list_radial_small_chart_view"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:layout_margin="4dp"/>
 
 </LinearLayout >

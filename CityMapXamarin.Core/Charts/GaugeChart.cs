@@ -45,8 +45,8 @@ namespace CityMapXamarin.Core.Charts
                     public const float UP_INDENT_FROM_CIRCLE_FOR_BOLD_LINE = 0.07f;
                     public const float DOWN_INDENT_FROM_CIRCLE_FOR_BOLD_LINE = 0.07f;
 
-                    public const float UP_INDENT_FROM_CIRCLE_FOR_LINE_THICKNESS = 0;
-                    public const float DOWN_INDENT_FROM_CIRCLE_FOR_LINE_THICKNESS = 0.33f;
+                    public const float UP_INDENT_FROM_CIRCLE_FOR_THIN_LINE = 0;
+                    public const float DOWN_INDENT_FROM_CIRCLE_FOR_THIN_LINE = 0.25f;
 
                     public const float SCORE_VALUE_LABEL_SIZE = 0.67f;
                     public const float SCORE_TITLE_LABEL_SIZE = 0.12f;
@@ -171,8 +171,8 @@ namespace CityMapXamarin.Core.Charts
             var upIndentFromCircleForBoldLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.UP_INDENT_FROM_CIRCLE_FOR_BOLD_LINE * radius + lineThickness / 2; ;
             var downIndentFromCircleForrBoldLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.DOWN_INDENT_FROM_CIRCLE_FOR_BOLD_LINE * radius + lineThickness / 2;
 
-            var upIndentFromCircleForThinLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.UP_INDENT_FROM_CIRCLE_FOR_LINE_THICKNESS * radius;
-            var downIndentFromCircleFoThinLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.DOWN_INDENT_FROM_CIRCLE_FOR_LINE_THICKNESS + lineThickness / 2;
+            var upIndentFromCircleForThinLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.UP_INDENT_FROM_CIRCLE_FOR_THIN_LINE * radius;
+            var downIndentFromCircleFoThinLine = GuageChartDefines.SectorGaugeChart.CoefForCalculate.DOWN_INDENT_FROM_CIRCLE_FOR_THIN_LINE * radius + lineThickness / 2;
 
             var scoreValueLabelSize = GuageChartDefines.SectorGaugeChart.CoefForCalculate.SCORE_VALUE_LABEL_SIZE * radius;
             var scoreTitleLabelSize = GuageChartDefines.SectorGaugeChart.CoefForCalculate.SCORE_TITLE_LABEL_SIZE * radius;
@@ -203,7 +203,8 @@ namespace CityMapXamarin.Core.Charts
             var backgroundLineColor = new SKColor(241, 241, 241);
             var backgroundLinePaint = InitializePaint(lineThickness, backgroundLineColor);
 
-            var gradient = InitializeShader(cx, cy, GuageChartDefines.GradientGaugeChartWhithoutArrow.GRADIENT_ROTATE_ANGLE, null);
+            var gradientColors = GetGradientColor(score);
+            var gradient = InitializeShader(cx, cy, GuageChartDefines.GradientGaugeChartWhithoutArrow.GRADIENT_ROTATE_ANGLE, gradientColors);
             var gradientLinePaint = InitializePaint(lineThickness, gradient);
 
             var scoreColor = new SKColor(0, 24, 47);
